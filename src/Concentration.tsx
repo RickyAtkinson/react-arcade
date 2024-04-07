@@ -9,7 +9,9 @@ export default function Snake() {
           Concentration
         </h1>
         <Navbar>
-          <Button color="yellow">Test</Button>
+          <Button color="yellow" hover="yellow">
+            Test
+          </Button>
         </Navbar>
       </header>
       <main className="container mx-auto px-8 text-center">

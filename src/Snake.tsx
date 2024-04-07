@@ -9,7 +9,9 @@ export default function Snake() {
           Snake
         </h1>
         <Navbar>
-          <Button color="green">Test</Button>
+          <Button color="green" hover="green">
+            Test
+          </Button>
         </Navbar>
       </header>
       <main className="container mx-auto px-8 text-center">

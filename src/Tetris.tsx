@@ -9,7 +9,9 @@ export default function Tetris() {
           Tetris
         </h1>
         <Navbar>
-          <Button color="blue">Test</Button>
+          <Button color="blue" hover="blue">
+            Test
+          </Button>
         </Navbar>
       </header>
       <main className="container mx-auto px-8 text-center">

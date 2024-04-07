@@ -9,7 +9,9 @@ export default function GameOfLife() {
           Game of Life
         </h1>
         <Navbar>
-          <Button color="red">Test</Button>
+          <Button color="red" hover="red">
+            Test
+          </Button>
         </Navbar>
       </header>
       <main className="container mx-auto px-8 text-center">
