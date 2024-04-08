@@ -16,7 +16,7 @@ export default function Tetris() {
         </Navbar>
       </header>
         <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon...</p>
-      <main className="container mx-auto flex flex-grow px-8">
+      <main className="container mx-auto flex-grow px-8">
       </main>
       <Footer />
     </>

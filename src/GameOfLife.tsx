@@ -15,7 +15,7 @@ export default function GameOfLife() {
           </Button>
         </Navbar>
       </header>
-      <main className="container mx-auto flex flex-grow px-8">
+      <main className="container mx-auto flex-grow px-8">
         <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon...</p>
       </main>
       <Footer />
