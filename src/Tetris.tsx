@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import Navbar from "./components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Tetris() {
   return (
@@ -14,9 +15,10 @@ export default function Tetris() {
           </Button>
         </Navbar>
       </header>
-      <main className="container mx-auto px-8 text-center">
         <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon...</p>
+      <main className="container mx-auto flex flex-grow px-8">
       </main>
+      <Footer />
     </>
   );
 }

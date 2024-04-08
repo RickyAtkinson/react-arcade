@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Footer from "./components/Footer";
 
 export default function App() {
   const gameList = [
@@ -15,7 +16,7 @@ export default function App() {
           React Arcade
         </h1>
       </header>
-      <main className="container mx-auto px-8 text-center">
+      <main className="container mx-auto flex-grow px-8 text-center">
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-6">
           Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
           cillum sint consectetur cupidatat.
@@ -35,6 +36,7 @@ export default function App() {
           ))}
         </div>
       </main>
+      <Footer />
     </>
   );
 }
