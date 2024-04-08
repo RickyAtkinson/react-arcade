@@ -25,8 +25,10 @@ export default function Tetris() {
           </Button>
         </Navbar>
       </header>
-      <main className="container mx-auto flex flex-grow justify-around px-8">
-        <TetrisGameBoard gameGrid={gameGrid} />
+      <main className="container mx-auto flex-grow px-8">
+        <div className="flex justify-around">
+          <TetrisGameBoard gameGrid={gameGrid} />
+        </div>
       </main>
     </>
   );

@@ -15,7 +15,7 @@ export default function TetrisGameBoard({
 
   return (
     <div
-      className="grid grid-cols-[repeat(var(--grid-columns),_var(--grid-resolution))] grid-rows-[repeat(var(--grid-rows),_var(--grid-resolution))] gap-[2px]"
+      className="grid grid-cols-[repeat(var(--grid-columns),_var(--grid-resolution))] grid-rows-[repeat(var(--grid-rows),_var(--grid-resolution))] gap-[2px] rounded bg-zinc-900 p-1"
       style={boardStyles}
     >
       {gameGrid.map((rows, y) =>
