@@ -1,8 +1,19 @@
+import { useState } from "react";
+import { useGameBoard } from "./hooks/tetris/useGameGrid";
 import Button from "@/components/Button";
-import Navbar from "./components/Navbar";
+import Navbar from "@/components/Navbar";
+import TetrisGameBoard from "@/components/tetris/TetrisGameBoard";
 import Footer from "@/components/Footer";
 
 export default function Tetris() {
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [gameGrid, , clearGameGrid] = useGameBoard();
+
+  function startGame() {
+    clearGameGrid();
+    setIsPlaying(true);
+  }
+
   return (
     <>
       <header className="container mx-auto px-8 pb-6 pt-6 text-center">
@@ -10,13 +21,13 @@ export default function Tetris() {
           Tetris
         </h1>
         <Navbar>
-          <Button color="blue" hover="blue">
-            Test
+          <Button disabled={isPlaying} hover="green" onClick={startGame}>
+            Start
           </Button>
         </Navbar>
       </header>
-        <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon...</p>
-      <main className="container mx-auto flex-grow px-8">
+      <main className="container mx-auto flex flex-grow justify-around px-8">
+        <TetrisGameBoard gameGrid={gameGrid} />
       </main>
       <Footer />
     </>

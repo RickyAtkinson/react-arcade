@@ -1,4 +1,4 @@
-import { ButtonColor } from "@/.";
+import { ButtonColor } from "@/index";
 import { twMerge } from "tailwind-merge";
 import { clsx } from "clsx";
 
@@ -8,7 +8,7 @@ export default function getButtonClassName(
 ) {
   return twMerge(
     clsx(
-      "rounded px-8 py-2 font-bold transition duration-200",
+      "rounded px-8 py-2 font-bold transition duration-200 disabled:opacity-50",
       {
         "bg-zinc-900 hover:bg-zinc-700": color === "gray",
         "bg-red-900 hover:bg-red-700": color === "red",
