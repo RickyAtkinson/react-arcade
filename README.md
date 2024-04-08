@@ -1,5 +1,7 @@
 # React Arcade
 
+Work in progress.
+
 ## Dependencies
 
 - Node
