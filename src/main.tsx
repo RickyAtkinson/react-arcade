@@ -5,15 +5,19 @@ import Concentration from "@/Concentration";
 import GameOfLife from "@/GameOfLife";
 import Snake from "@/Snake";
 import Tetris from "@/Tetris";
+import Footer from "./components/Footer";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/concentration" element={<Concentration />} />
-      <Route path="/game-of-life" element={<GameOfLife />} />
-      <Route path="/snake" element={<Snake />} />
-      <Route path="/tetris" element={<Tetris />} />
-    </Routes>
-  </BrowserRouter>,
+  <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/concentration" element={<Concentration />} />
+        <Route path="/game-of-life" element={<GameOfLife />} />
+        <Route path="/snake" element={<Snake />} />
+        <Route path="/tetris" element={<Tetris />} />
+      </Routes>
+    </BrowserRouter>
+    <Footer />
+  </>,
 );

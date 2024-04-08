@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Footer from "./components/Footer";
 
 export default function App() {
   const gameList = [
@@ -36,7 +35,6 @@ export default function App() {
           ))}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

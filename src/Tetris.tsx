@@ -3,7 +3,6 @@ import { useGameBoard } from "./hooks/tetris/useGameGrid";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import TetrisGameBoard from "@/components/tetris/TetrisGameBoard";
-import Footer from "@/components/Footer";
 
 export default function Tetris() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -29,7 +28,6 @@ export default function Tetris() {
       <main className="container mx-auto flex flex-grow justify-around px-8">
         <TetrisGameBoard gameGrid={gameGrid} />
       </main>
-      <Footer />
     </>
   );
 }

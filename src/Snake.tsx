@@ -1,6 +1,5 @@
 import Button from "@/components/Button";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 
 export default function Snake() {
   return (
@@ -18,7 +17,6 @@ export default function Snake() {
       <main className="container mx-auto flex-grow px-8">
         <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon...</p>
       </main>
-      <Footer />
     </>
   );
 }
