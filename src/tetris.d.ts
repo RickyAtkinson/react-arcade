@@ -1,6 +1,6 @@
 import { Grid } from "@/.";
 
-export type TetrominoName = "I" | "J" | "L" | "O" | "S" | "T";
+export type TetrominoName = "I" | "J" | "L" | "O" | "S" | "T" | "Z";
 
 export interface TetrisCell {
   isOccupied: boolean;
