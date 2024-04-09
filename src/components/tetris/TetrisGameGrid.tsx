@@ -19,8 +19,7 @@ export default function TetrisGameGrid({
   isPlaying: boolean;
   player: TetrisPlayer;
 }) {
-  // Create a ref to the current grid for the useEffect to avoid constantly
-  // triggering rerenders
+  // Create a ref to the current grid for the useEffect to avoid constantly triggering rerenders
   const gameGridRef = useRef<TetrisGrid>(gameGrid);
   gameGridRef.current = gameGrid;
 
