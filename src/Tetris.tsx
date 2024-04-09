@@ -42,6 +42,7 @@ export default function Tetris() {
         <div className="flex justify-around">
           <TetrisGameController
             ref={gameControllerRef}
+            isPlaying={isPlaying}
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}
             player={player}
