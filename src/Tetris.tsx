@@ -34,7 +34,7 @@ export default function Tetris() {
         </h1>
         <Navbar>
           <Button hover={isPlaying ? "red" : "green"} onClick={toggleGame}>
-            {isPlaying ? "Reset" : "Play"}
+            {isPlaying ? "Quit" : "Play"}
           </Button>
         </Navbar>
       </header>
