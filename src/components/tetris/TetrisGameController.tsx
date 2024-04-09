@@ -3,7 +3,7 @@ import { SetStateFunction } from "@/index";
 import { TetrisGrid, TetrisPlayer } from "@/tetris";
 import {
   getNewGridWithCellShape,
-  getStaticGridCells,
+  getOccupiedGridCells,
 } from "@/utils/tetris/grid";
 import TetrisGameGrid from "./TetrisGameGrid";
 
@@ -23,8 +23,8 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   },
   ref: React.Ref<HTMLButtonElement>,
 ) {
-  const gameGridRef = useRef<TetrisGrid>(getStaticGridCells(gameGrid));
-  gameGridRef.current = getStaticGridCells(gameGrid);
+  const gameGridRef = useRef<TetrisGrid>(getOccupiedGridCells(gameGrid));
+  gameGridRef.current = getOccupiedGridCells(gameGrid);
 
   function handleOnKeyDown({ code }: { code: string }) {
     if (!isPlaying) return;
