@@ -28,7 +28,7 @@ export default function usePlayer(): [
   const nextPlayer = useCallback(() => {
     setPlayer((prev): TetrisPlayer => {
       const tetrominoList = prev.nextTetrominoes;
-      tetrominoList.push(getRandomTetromino());
+      tetrominoList.unshift(getRandomTetromino());
 
       return {
         tetromino: tetrominoList.pop()!,
