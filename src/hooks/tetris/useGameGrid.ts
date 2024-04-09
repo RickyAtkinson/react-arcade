@@ -4,7 +4,7 @@ import { TetrisGrid } from "@/tetris";
 import { COLUMNS, ROWS } from "@/data/tetris";
 import { createEmptyGrid } from "@/utils/tetris/board";
 
-export function useGameBoard(): [
+export default function useGameBoard(): [
   TetrisGrid,
   SetStateFunction<TetrisGrid>,
   () => void,

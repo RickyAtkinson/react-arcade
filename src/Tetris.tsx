@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useGameBoard } from "./hooks/tetris/useGameGrid";
+import useGameBoard from "./hooks/tetris/useGameGrid";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import TetrisGameController from "@/components/tetris/TetrisGameController";
