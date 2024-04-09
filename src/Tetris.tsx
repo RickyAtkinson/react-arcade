@@ -8,8 +8,11 @@ import TetrisGameController from "@/components/tetris/TetrisGameController";
 export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
   const [gameGrid, setGameGrid, resetGameGrid] = useGameBoard();
-  const [player, setPlayerPosition, nextPlayer, resetPlayer] = usePlayer();
+  const [player, setPlayerPosition, setPlayerShape, nextPlayer, resetPlayer] =
+    usePlayer();
 
   function startGame() {
     setIsPlaying(true);
@@ -18,6 +21,8 @@ export default function Tetris() {
 
   function resetGame() {
     setIsPlaying(false);
+    setIsGameOver(false);
+    setIsGamePaused(false);
     resetPlayer();
     resetGameGrid();
   }
@@ -43,10 +48,16 @@ export default function Tetris() {
           <TetrisGameController
             ref={gameControllerRef}
             isPlaying={isPlaying}
+            resetGame={resetGame}
+            isGameOver={isGameOver}
+            setIsGameOver={setIsGameOver}
+            isGamePaused={isGamePaused}
+            setIsGamePaused={setIsGamePaused}
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}
             player={player}
             setPlayerPosition={setPlayerPosition}
+            setPlayerShape={setPlayerShape}
             nextPlayer={nextPlayer}
           />
         </div>

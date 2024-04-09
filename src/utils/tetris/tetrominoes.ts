@@ -1,4 +1,4 @@
-import { TetrisTetromino } from "@/tetris";
+import { TetrisShape, TetrisTetromino } from "@/tetris";
 
 export const tetrominoes: TetrisTetromino[] = [
   {
@@ -62,3 +62,16 @@ export const tetrominoes: TetrisTetromino[] = [
 export function getRandomTetromino() {
   return tetrominoes[Math.floor(Math.random() * tetrominoes.length)];
 }
+
+export const getRotatedShape = (
+  shape: TetrisShape,
+  direction: number,
+): TetrisShape => {
+  // Transpose rows and columns
+  const newShape = shape.map((_, i) => shape.map((col) => col[i]));
+
+  // Reverse rows to get a rotated grid
+  if (direction > 0) return newShape.map((row) => row.reverse());
+
+  return newShape.reverse();
+};

@@ -42,3 +42,24 @@ export function getOccupiedGridCells(grid: TetrisGrid) {
     row.map((cell) => (cell.isOccupied ? cell : { ...defaultTetrisCell })),
   );
 }
+
+export function checkCollision(
+  gameGrid: TetrisGrid,
+  position: Position,
+  shape: TetrisShape,
+) {
+  for (let y = 0; y < shape.length; y++) {
+    const gridY = y + position.y;
+
+    for (let x = 0; x < shape[y].length; x++) {
+      if (shape[y][x]) {
+        const gridX = x + position.x;
+        const isWithinGrid = gameGrid?.[gridY] && gameGrid[gridY]?.[gridX];
+
+        if (!isWithinGrid || gameGrid[gridY][gridX].isOccupied) return true;
+      }
+    }
+  }
+
+  return false;
+}

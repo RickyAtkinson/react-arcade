@@ -1,5 +1,15 @@
 import { Grid, Position } from "@/.";
 
+export type TetrisAction =
+  | "MoveLeft"
+  | "MoveRight"
+  | "MoveDown"
+  | "RotateClockwise"
+  | "RotateCounterClockwise"
+  | "Drop"
+  | "Pause"
+  | "Quit";
+
 export interface TetrisCell {
   isOccupied: boolean;
   occupiedBy: TetrominoName | null;

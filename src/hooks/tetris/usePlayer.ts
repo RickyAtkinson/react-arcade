@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Position } from "@/index";
-import { TetrisPlayer, TetrisTetromino } from "@/tetris";
+import { TetrisPlayer, TetrisShape, TetrisTetromino } from "@/tetris";
 import { getRandomTetromino } from "@/utils/tetris/tetrominoes";
 
 export const initialPosition: Position = { x: 4, y: 0 };
@@ -20,6 +20,7 @@ function createTetrisPlayer(): TetrisPlayer {
 export default function usePlayer(): [
   TetrisPlayer,
   (position: Position) => void,
+  (shape: TetrisShape) => void,
   () => void,
   () => void,
 ] {
@@ -29,6 +30,14 @@ export default function usePlayer(): [
     setPlayer((prev) => ({
       tetromino: prev.tetromino,
       position: { x: position.x, y: position.y },
+      nextTetrominoes: prev.nextTetrominoes,
+    }));
+  }, []);
+
+  const setPlayerShape = useCallback((shape: TetrisShape) => {
+    setPlayer((prev) => ({
+      tetromino: { name: prev.tetromino.name, shape: shape },
+      position: prev.position,
       nextTetrominoes: prev.nextTetrominoes,
     }));
   }, []);
@@ -50,5 +59,5 @@ export default function usePlayer(): [
     setPlayer(createTetrisPlayer());
   }, []);
 
-  return [player, setPlayerPosition, nextPlayer, resetPlayer];
+  return [player, setPlayerPosition, setPlayerShape, nextPlayer, resetPlayer];
 }
