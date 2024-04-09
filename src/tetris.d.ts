@@ -1,6 +1,4 @@
-import { Grid } from "@/.";
-
-export type TetrominoName = "I" | "J" | "L" | "O" | "S" | "T" | "Z";
+import { Grid, Position } from "@/.";
 
 export interface TetrisCell {
   isOccupied: boolean;
@@ -8,3 +6,18 @@ export interface TetrisCell {
 }
 
 export type TetrisGrid = Grid<TetrisCell>;
+
+export type TetrominoName = "I" | "J" | "L" | "O" | "S" | "T" | "Z";
+
+export type TetrisShape = Grid<0 | 1>;
+
+export interface TetrisTetromino {
+  name: TetrominoName;
+  shape: TetrisShape;
+}
+
+export interface TetrisPlayer {
+  tetromino: TetrisTetromino;
+  position: Position;
+  nextTetrominoes: TetrisTetromino[];
+}

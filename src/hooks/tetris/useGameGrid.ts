@@ -13,9 +13,9 @@ export default function useGameBoard(): [
     createEmptyGrid(ROWS, COLUMNS),
   );
 
-  const clearGameGrid = useCallback(() => {
+  const resetGameGrid = useCallback(() => {
     setGameGrid(createEmptyGrid(ROWS, COLUMNS));
   }, []);
 
-  return [gameGrid, setGameGrid, clearGameGrid];
+  return [gameGrid, setGameGrid, resetGameGrid];
 }

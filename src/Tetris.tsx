@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import useGameBoard from "./hooks/tetris/useGameGrid";
+import useGameBoard from "@/hooks/tetris/useGameGrid";
+import usePlayer from "@/hooks/tetris/usePlayer";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import TetrisGameController from "@/components/tetris/TetrisGameController";
@@ -7,7 +8,8 @@ import TetrisGameController from "@/components/tetris/TetrisGameController";
 export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [gameGrid, , clearGameGrid] = useGameBoard();
+  const [gameGrid, setGameGrid, resetGameGrid] = useGameBoard();
+  const [player, setPlayer, nextPlayer, resetPlayer] = usePlayer();
 
   function startGame() {
     setIsPlaying(true);
@@ -16,7 +18,8 @@ export default function Tetris() {
 
   function resetGame() {
     setIsPlaying(false);
-    clearGameGrid();
+    resetPlayer();
+    resetGameGrid();
   }
 
   function toggleGame() {
@@ -37,7 +40,14 @@ export default function Tetris() {
       </header>
       <main className="container mx-auto flex-grow px-8">
         <div className="flex justify-around">
-          <TetrisGameController gameGrid={gameGrid} ref={gameControllerRef} />
+          <TetrisGameController
+            ref={gameControllerRef}
+            gameGrid={gameGrid}
+            setGameGrid={setGameGrid}
+            player={player}
+            setPlayer={setPlayer}
+            nextPlayer={nextPlayer}
+          />
         </div>
       </main>
     </>
