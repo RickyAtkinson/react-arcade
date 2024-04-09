@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { TetrisGrid } from "@/tetris";
-import TetrisGameBoard from "./TetrisGameBoard";
+import TetrisGameGrid from "./TetrisGameGrid";
 
 const TetrisGameController = forwardRef(
   (
@@ -17,7 +17,7 @@ const TetrisGameController = forwardRef(
 
     return (
       <button ref={ref} onKeyDown={handleOnKeyDown}>
-        <TetrisGameBoard gameGrid={gameGrid} />
+        <TetrisGameGrid gameGrid={gameGrid} />
       </button>
     );
   },

@@ -2,11 +2,7 @@ import { TetrisGrid } from "@/tetris";
 import TetrisGridCell from "./TetrisGridCell";
 import { COLUMNS, RESOLUTION, ROWS } from "@/data/tetris";
 
-export default function TetrisGameBoard({
-  gameGrid,
-}: {
-  gameGrid: TetrisGrid;
-}) {
+export default function TetrisGameGrid({ gameGrid }: { gameGrid: TetrisGrid }) {
   const boardStyles = {
     "--grid-rows": ROWS,
     "--grid-columns": COLUMNS,
