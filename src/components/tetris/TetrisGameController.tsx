@@ -25,14 +25,20 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   },
   ref: React.Ref<HTMLButtonElement>,
 ) {
-  const gameGridRef = useRef<TetrisGrid>(getOccupiedGridCells(gameGrid));
-  gameGridRef.current = getOccupiedGridCells(gameGrid);
+  // Create a ref to the current grid for the useEffect to avoid constantly
+  // triggering rerenders
+  const gameGridRef = useRef<TetrisGrid>(gameGrid);
+  gameGridRef.current = gameGrid;
 
   function handleOnKeyDown({ code }: { code: string }) {
     if (!isPlaying) return;
 
     if (code === "ArrowDown") {
       setPlayerPosition({ x: player.position.x, y: player.position.y + 1 });
+    } else if (code === "ArrowLeft") {
+      setPlayerPosition({ x: player.position.x - 1, y: player.position.y });
+    } else if (code === "ArrowRight") {
+      setPlayerPosition({ x: player.position.x + 1, y: player.position.y });
     } else {
       nextPlayer();
     }
@@ -41,15 +47,19 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   useEffect(() => {
     if (!isPlaying) return;
 
-    setGameGrid(
-      getNewGridWithCellShape(
-        gameGridRef.current,
-        player.tetromino.shape,
-        true,
-        player.position,
-        player.tetromino.name,
-      ),
+    // Get a copy of the grid without the old player
+    let newGrid = getOccupiedGridCells(gameGridRef.current);
+
+    // Add the updated player to the new grid
+    newGrid = getNewGridWithCellShape(
+      newGrid,
+      player.tetromino.shape,
+      true,
+      player.position,
+      player.tetromino.name,
     );
+
+    setGameGrid(newGrid);
   }, [isPlaying, player, setGameGrid]);
 
   return (
