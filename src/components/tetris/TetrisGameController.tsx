@@ -1,7 +1,10 @@
 import { forwardRef, useEffect, useRef } from "react";
 import { SetStateFunction } from "@/index";
 import { TetrisGrid, TetrisPlayer } from "@/tetris";
-import { getNewGridWithCellShape } from "@/utils/tetris/grid";
+import {
+  getNewGridWithCellShape,
+  getStaticGridCells,
+} from "@/utils/tetris/grid";
 import TetrisGameGrid from "./TetrisGameGrid";
 
 const TetrisGameController = forwardRef(
@@ -23,12 +26,14 @@ const TetrisGameController = forwardRef(
     },
     ref: React.Ref<HTMLButtonElement>,
   ) => {
-    const gameGridRef = useRef<TetrisGrid>(gameGrid);
-    gameGridRef.current = gameGrid;
+    const gameGridRef = useRef<TetrisGrid>(getStaticGridCells(gameGrid));
+    gameGridRef.current = getStaticGridCells(gameGrid);
 
     function handleOnKeyDown({ code }: { code: string }) {
+      if (!isPlaying) return;
+
+      nextPlayer();
       console.log("Key: ", code);
-      console.log("Grid: ", gameGrid);
       console.log("Player: ", player);
     }
 

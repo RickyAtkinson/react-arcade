@@ -36,3 +36,9 @@ export function getNewGridWithCellShape(
 
   return newGrid;
 }
+
+export function getStaticGridCells(grid: TetrisGrid) {
+  return grid.map((row) =>
+    row.map((cell) => (cell.isOccupied ? cell : { ...defaultTetrisCell })),
+  );
+}
