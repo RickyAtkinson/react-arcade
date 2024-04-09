@@ -7,57 +7,52 @@ import {
 } from "@/utils/tetris/grid";
 import TetrisGameGrid from "./TetrisGameGrid";
 
-const TetrisGameController = forwardRef(
-  (
-    {
-      isPlaying,
-      gameGrid,
-      setGameGrid,
-      player,
-      setPlayer,
-      nextPlayer,
-    }: {
-      isPlaying: boolean;
-      gameGrid: TetrisGrid;
-      setGameGrid: SetStateFunction<TetrisGrid>;
-      player: TetrisPlayer;
-      setPlayer: SetStateFunction<TetrisPlayer>;
-      nextPlayer: () => void;
-    },
-    ref: React.Ref<HTMLButtonElement>,
-  ) => {
-    const gameGridRef = useRef<TetrisGrid>(getStaticGridCells(gameGrid));
-    gameGridRef.current = getStaticGridCells(gameGrid);
-
-    function handleOnKeyDown({ code }: { code: string }) {
-      if (!isPlaying) return;
-
-      nextPlayer();
-      console.log("Key: ", code);
-      console.log("Player: ", player);
-    }
-
-    useEffect(() => {
-      if (!isPlaying) return;
-
-      setGameGrid(
-        getNewGridWithCellShape(
-          gameGridRef.current,
-          player.tetromino.shape,
-          true,
-          player.position,
-          player.tetromino.name,
-        ),
-      );
-    }, [isPlaying, player, setGameGrid]);
-
-    return (
-      <button ref={ref} onKeyDown={handleOnKeyDown}>
-        <TetrisGameGrid gameGrid={gameGrid} />
-      </button>
-    );
+const TetrisGameController = forwardRef(function TetrisGameController(
+  {
+    isPlaying,
+    gameGrid,
+    setGameGrid,
+    player,
+    nextPlayer,
+  }: {
+    isPlaying: boolean;
+    gameGrid: TetrisGrid;
+    setGameGrid: SetStateFunction<TetrisGrid>;
+    player: TetrisPlayer;
+    nextPlayer: () => void;
   },
-);
-TetrisGameController.displayName = "TetrisGameController";
+  ref: React.Ref<HTMLButtonElement>,
+) {
+  const gameGridRef = useRef<TetrisGrid>(getStaticGridCells(gameGrid));
+  gameGridRef.current = getStaticGridCells(gameGrid);
+
+  function handleOnKeyDown({ code }: { code: string }) {
+    if (!isPlaying) return;
+
+    nextPlayer();
+    console.log("Key: ", code);
+    console.log("Player: ", player);
+  }
+
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    setGameGrid(
+      getNewGridWithCellShape(
+        gameGridRef.current,
+        player.tetromino.shape,
+        true,
+        player.position,
+        player.tetromino.name,
+      ),
+    );
+  }, [isPlaying, player, setGameGrid]);
+
+  return (
+    <button ref={ref} onKeyDown={handleOnKeyDown}>
+      <TetrisGameGrid gameGrid={gameGrid} />
+    </button>
+  );
+});
 
 export default TetrisGameController;
