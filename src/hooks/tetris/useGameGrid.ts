@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { SetStateFunction } from "@/index";
 import { TetrisGrid } from "@/tetris";
 import { COLUMNS, ROWS } from "@/data/tetris";
-import { createEmptyGrid } from "@/utils/tetris/board";
+import { createEmptyGrid } from "@/utils/tetris/grid";
 
 export default function useGameBoard(): [
   TetrisGrid,
