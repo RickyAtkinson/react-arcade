@@ -9,7 +9,7 @@ function attemptPlayerMove(
   gameGrid: TetrisGrid,
   setPlayerPosition: (position: Position) => void,
 ) {
-  const desiredPosition: Position = { ...player.position };
+  const desiredPosition = { ...player.position };
 
   if (action === "MoveDown") {
     desiredPosition.y++;
