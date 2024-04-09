@@ -9,7 +9,7 @@ export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [gameGrid, setGameGrid, resetGameGrid] = useGameBoard();
-  const [player, setPlayer, nextPlayer, resetPlayer] = usePlayer();
+  const [player, setPlayerPosition, nextPlayer, resetPlayer] = usePlayer();
 
   function startGame() {
     setIsPlaying(true);
@@ -46,7 +46,7 @@ export default function Tetris() {
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}
             player={player}
-            setPlayer={setPlayer}
+            setPlayerPosition={setPlayerPosition}
             nextPlayer={nextPlayer}
           />
         </div>

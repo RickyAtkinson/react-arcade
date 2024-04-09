@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useRef } from "react";
-import { SetStateFunction } from "@/index";
+import { Position, SetStateFunction } from "@/index";
 import { TetrisGrid, TetrisPlayer } from "@/tetris";
 import {
   getNewGridWithCellShape,
@@ -13,12 +13,14 @@ const TetrisGameController = forwardRef(function TetrisGameController(
     gameGrid,
     setGameGrid,
     player,
+    setPlayerPosition,
     nextPlayer,
   }: {
     isPlaying: boolean;
     gameGrid: TetrisGrid;
     setGameGrid: SetStateFunction<TetrisGrid>;
     player: TetrisPlayer;
+    setPlayerPosition: (position: Position) => void;
     nextPlayer: () => void;
   },
   ref: React.Ref<HTMLButtonElement>,
@@ -29,9 +31,11 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   function handleOnKeyDown({ code }: { code: string }) {
     if (!isPlaying) return;
 
-    nextPlayer();
-    console.log("Key: ", code);
-    console.log("Player: ", player);
+    if (code === "ArrowDown") {
+      setPlayerPosition({ x: player.position.x, y: player.position.y + 1 });
+    } else {
+      nextPlayer();
+    }
   }
 
   useEffect(() => {
