@@ -21,6 +21,7 @@ export default function TetrisGridCell({ cell }: { cell: TetrisCell }) {
             cell.occupiedBy === "T",
           "border-red-700 border-b-red-800 border-t-red-500 bg-red-600":
             cell.occupiedBy === "Z",
+          "border-2 border-zinc-800": cell.occupiedBy === "Ghost",
         }),
       )}
     ></div>

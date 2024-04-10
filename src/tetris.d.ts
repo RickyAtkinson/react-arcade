@@ -12,7 +12,7 @@ export type TetrisAction =
 
 export interface TetrisCell {
   isOccupied: boolean;
-  occupiedBy: TetrominoName | null;
+  occupiedBy: TetrominoName | "Ghost" | null;
 }
 
 export type TetrisGrid = Grid<TetrisCell>;

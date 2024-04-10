@@ -7,6 +7,7 @@ import {
 } from "@/utils/tetris/grid";
 import TetrisGridCell from "./TetrisGridCell";
 import { SetStateFunction } from "@/index";
+import { getPlayerDropPosition } from "@/utils/tetris/playerController";
 
 export default function TetrisGameGrid({
   gameGrid,
@@ -34,6 +35,16 @@ export default function TetrisGameGrid({
 
     // Get a copy of the grid without the old player
     let newGrid = getOccupiedGridCells(gameGridRef.current);
+
+    // Add the player's "ghost"
+    const ghostPos = getPlayerDropPosition(player, newGrid);
+    console.log(ghostPos, player.position);
+    newGrid = getNewGridWithCellShape(
+      newGrid,
+      player.tetromino.shape,
+      ghostPos,
+      "Ghost",
+    );
 
     // Add the updated player to the new grid
     newGrid = getNewGridWithCellShape(

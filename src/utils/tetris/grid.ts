@@ -12,7 +12,7 @@ export function getNewGridWithCellShape(
   gameGrid: TetrisGrid,
   shape: TetrisShape,
   position: Position,
-  cellName: TetrominoName,
+  cellName: TetrominoName | "Ghost",
   isTemporary: boolean = true,
 ): TetrisGrid {
   const newGrid = JSON.parse(JSON.stringify(gameGrid));
