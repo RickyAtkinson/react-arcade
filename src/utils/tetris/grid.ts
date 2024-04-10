@@ -1,14 +1,10 @@
 import { Position } from "@/index";
-import { TetrisCell, TetrisGrid, TetrisShape, TetrominoName } from "@/tetris";
-
-const defaultTetrisCell: TetrisCell = {
-  isOccupied: false,
-  occupiedBy: null,
-};
+import { TetrisGrid, TetrisShape, TetrominoName } from "@/tetris";
+import { DEFAULT_CELL } from "@/data/tetris";
 
 export function createEmptyGrid(rows: number, cols: number): TetrisGrid {
   return Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => ({ ...defaultTetrisCell })),
+    Array.from({ length: cols }, () => ({ ...DEFAULT_CELL })),
   );
 }
 
@@ -39,7 +35,7 @@ export function getNewGridWithCellShape(
 
 export function getOccupiedGridCells(gameGrid: TetrisGrid) {
   return gameGrid.map((row) =>
-    row.map((cell) => (cell.isOccupied ? cell : { ...defaultTetrisCell })),
+    row.map((cell) => (cell.isOccupied ? cell : { ...DEFAULT_CELL })),
   );
 }
 

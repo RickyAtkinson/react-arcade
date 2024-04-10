@@ -1,8 +1,12 @@
 import { forwardRef } from "react";
 import { useInterval } from "usehooks-ts";
 import { Position, SetStateFunction } from "@/index";
-import { TetrisGrid, TetrisPlayer, TetrisShape } from "@/tetris";
-import { INITIAL_PLAYER_POSITION, NEXT_TETROMINOES_SHOWN } from "@/data/tetris";
+import { TetrisCell, TetrisGrid, TetrisPlayer, TetrisShape } from "@/tetris";
+import {
+  DEFAULT_CELL,
+  INITIAL_PLAYER_POSITION,
+  NEXT_TETROMINOES_SHOWN,
+} from "@/data/tetris";
 import { getActionForKeyCode } from "@/utils/tetris/input";
 import { playerController } from "@/utils/tetris/playerController";
 import { checkCollision, getNewGridWithCellShape } from "@/utils/tetris/grid";
@@ -83,13 +87,33 @@ const TetrisGameController = forwardRef(function TetrisGameController(
       );
     } else {
       // Player collided whem moving down so set them in place
-      const newGameGrid = getNewGridWithCellShape(
+      let newGameGrid = getNewGridWithCellShape(
         gameGrid,
         player.tetromino.shape,
         player.position,
         player.tetromino.name,
         false,
       );
+
+      // Check for cleared lines
+      const blankRow = newGameGrid[0].map(() => ({ ...DEFAULT_CELL }));
+      let linesCleared = 0;
+      newGameGrid = newGameGrid.reduce(
+        (acc: TetrisCell[][], row: TetrisCell[]) => {
+          if (row.every((column) => column.isOccupied)) {
+            linesCleared++;
+            acc.unshift([...blankRow]);
+          } else {
+            acc.push(row);
+          }
+          return acc;
+        },
+        [],
+      );
+
+      if (linesCleared > 0) {
+        addClearedLines(linesCleared);
+      }
 
       // Game Over if the next Player tetromino will collide
       const nextTetrominoShape =
@@ -101,10 +125,6 @@ const TetrisGameController = forwardRef(function TetrisGameController(
           nextTetrominoShape,
         ),
       );
-
-      // TODO: Check for cleared lines and Remove
-      // TODO: Update gameScore
-      addClearedLines(0); // TODO: Only here to keep linter quiet
 
       // Update the gameGride now we have processed the newGameGrid
       setGameGrid(newGameGrid);
