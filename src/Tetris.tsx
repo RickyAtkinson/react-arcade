@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import TetrisGameController from "@/components/tetris/TetrisGameController";
 import TetrisStatsDisplay from "./components/tetris/TetrisStatsDisplay";
+import TetrisPreviews from "./components/tetris/TetrisPreviews";
 
 export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
@@ -78,7 +79,7 @@ export default function Tetris() {
             nextPlayer={nextPlayer}
           />
           <div className="flex flex-col justify-between">
-            <div>Previews go here</div> {/* TODO: Previews */}
+            <TetrisPreviews player={player} isPlaying={isPlaying} />
             <TetrisStatsDisplay gameStats={gameStats} />
           </div>
         </div>
