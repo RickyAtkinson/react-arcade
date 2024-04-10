@@ -6,6 +6,7 @@ import { useFrameInterval } from "./hooks/tetris/useFrameInterval";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import TetrisGameController from "@/components/tetris/TetrisGameController";
+import TetrisStatsDisplay from "./components/tetris/TetrisStatsDisplay";
 
 export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
@@ -56,7 +57,7 @@ export default function Tetris() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8">
-        <div className="flex justify-around">
+        <div className="flex justify-center gap-3">
           <TetrisGameController
             ref={gameControllerRef}
             isPlaying={isPlaying}
@@ -76,6 +77,10 @@ export default function Tetris() {
             setPlayerShape={setPlayerShape}
             nextPlayer={nextPlayer}
           />
+          <div className="flex flex-col justify-between">
+            <div>Previews go here</div> {/* TODO: PReviews */}
+            <TetrisStatsDisplay gameStats={gameStats} />
+          </div>
         </div>
       </main>
     </>
