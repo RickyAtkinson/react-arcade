@@ -14,5 +14,9 @@ export const DEFAULT_FRAME_INTERVAL = 1000; // Initial time between game frames 
 export const MINIMUM_FRAME_INTERVAL = 100; // Minimum time between game frames in ms
 export const FRAME_INTERVAL_DECREMENT = 50; // Change in frame time when level increases
 export const LINES_PER_LEVEL = 10; // Amount of lines that need to be cleared to increase the level
+export const POINT_MULTIPLIER_1_LINE = 100; // Points awarded per level when 1 line is clesred
+export const POINT_MULTIPLIER_2_LINE = 300; // Points awarded per level when 2 lines are clesred
+export const POINT_MULTIPLIER_3_LINE = 500; // Points awarded per level when 3 lines are clesred
+export const POINT_MULTIPLIER_4_LINE = 800; // Points awarded per level when 4 lines are clesred
 
 export const INITIAL_PLAYER_POSITION: Position = { x: 4, y: 0 };

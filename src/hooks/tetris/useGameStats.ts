@@ -1,6 +1,12 @@
 import { useState, useCallback } from "react";
 import { TetrisGameStats } from "@/tetris";
-import { LINES_PER_LEVEL } from "@/data/tetris";
+import {
+  LINES_PER_LEVEL,
+  POINT_MULTIPLIER_1_LINE,
+  POINT_MULTIPLIER_2_LINE,
+  POINT_MULTIPLIER_3_LINE,
+  POINT_MULTIPLIER_4_LINE,
+} from "@/data/tetris";
 
 const getDefaultGameStats: TetrisGameStats = {
   level: 1,
@@ -17,7 +23,13 @@ export function useGameStats(): [
 
   const addClearedLines = useCallback((clearedLines: number) => {
     setGameStats((prev) => {
-      const points = prev.points + clearedLines * 100;
+      let multiplier = POINT_MULTIPLIER_1_LINE;
+
+      if (clearedLines === 2) multiplier = POINT_MULTIPLIER_2_LINE;
+      else if (clearedLines === 3) multiplier = POINT_MULTIPLIER_3_LINE;
+      else if (clearedLines >= 4) multiplier = POINT_MULTIPLIER_4_LINE;
+
+      const points = prev.points + prev.level * multiplier;
       const newLinesCompleted = prev.linesCompleted + clearedLines;
       const level =
         newLinesCompleted >= LINES_PER_LEVEL ? prev.level + 1 : prev.level;
