@@ -13,13 +13,13 @@ export function createEmptyGrid(rows: number, cols: number): TetrisGrid {
 }
 
 export function getNewGridWithCellShape(
-  grid: TetrisGrid,
+  gameGrid: TetrisGrid,
   shape: TetrisShape,
-  isPlayer: boolean,
   position: Position,
   cellName: TetrominoName,
+  isTemporary: boolean = true,
 ): TetrisGrid {
-  const newGrid = JSON.parse(JSON.stringify(grid));
+  const newGrid = JSON.parse(JSON.stringify(gameGrid));
 
   shape.forEach((row, y) => {
     row.forEach((cell, x) => {
@@ -27,7 +27,7 @@ export function getNewGridWithCellShape(
         const gridX = x + position.x;
         const gridY = y + position.y;
         newGrid[gridY][gridX] = {
-          isOccupied: !isPlayer,
+          isOccupied: !isTemporary,
           occupiedBy: cellName,
         };
       }
@@ -37,8 +37,8 @@ export function getNewGridWithCellShape(
   return newGrid;
 }
 
-export function getOccupiedGridCells(grid: TetrisGrid) {
-  return grid.map((row) =>
+export function getOccupiedGridCells(gameGrid: TetrisGrid) {
+  return gameGrid.map((row) =>
     row.map((cell) => (cell.isOccupied ? cell : { ...defaultTetrisCell })),
   );
 }

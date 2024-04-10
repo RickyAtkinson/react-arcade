@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import useGameBoard from "@/hooks/tetris/useGameGrid";
 import usePlayer from "@/hooks/tetris/usePlayer";
+import { useGameStats } from "./hooks/tetris/useGameStats";
+import { useFrameInterval } from "./hooks/tetris/useFrameInterval";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import TetrisGameController from "@/components/tetris/TetrisGameController";
@@ -10,11 +12,19 @@ export default function Tetris() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
+  const [gameStats, addClearedLines, resetGameStats] = useGameStats();
+  const [
+    frameInterval,
+    pauseFrameInterval,
+    resumeFrameInterval,
+    resetFrameInterval,
+  ] = useFrameInterval(gameStats);
   const [gameGrid, setGameGrid, resetGameGrid] = useGameBoard();
   const [player, setPlayerPosition, setPlayerShape, nextPlayer, resetPlayer] =
     usePlayer();
 
   function startGame() {
+    resetFrameInterval();
     setIsPlaying(true);
     gameControllerRef.current?.focus();
   }
@@ -23,6 +33,8 @@ export default function Tetris() {
     setIsPlaying(false);
     setIsGameOver(false);
     setIsGamePaused(false);
+    pauseFrameInterval();
+    resetGameStats();
     resetPlayer();
     resetGameGrid();
   }
@@ -53,6 +65,10 @@ export default function Tetris() {
             setIsGameOver={setIsGameOver}
             isGamePaused={isGamePaused}
             setIsGamePaused={setIsGamePaused}
+            addClearedLines={addClearedLines}
+            frameInterval={frameInterval}
+            pauseFrameInterval={pauseFrameInterval}
+            resumeFrameInterval={resumeFrameInterval}
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}
             player={player}

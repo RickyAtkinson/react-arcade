@@ -39,7 +39,6 @@ export default function TetrisGameGrid({
     newGrid = getNewGridWithCellShape(
       newGrid,
       player.tetromino.shape,
-      true,
       player.position,
       player.tetromino.name,
     );

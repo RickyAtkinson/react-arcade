@@ -31,3 +31,9 @@ export interface TetrisPlayer {
   position: Position;
   nextTetrominoes: TetrisTetromino[];
 }
+
+export interface TetrisGameStats {
+  level: number;
+  points: number;
+  linesCompleted: number;
+}
