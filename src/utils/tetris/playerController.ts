@@ -67,6 +67,8 @@ export function playerController(
 ) {
   if (action === "RotateClockwise" || action === "RotateCounterClockwise") {
     attemptPlayerRotate(action, player, gameGrid, setPlayerShape);
+  } else if (action === "Drop") {
+    setPlayerPosition(getPlayerDropPosition(player, gameGrid));
   } else {
     attemptPlayerMove(action, player, gameGrid, setPlayerPosition);
   }
