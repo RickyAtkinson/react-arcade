@@ -86,7 +86,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
         setPlayerShape,
       );
     } else {
-      // Player collided whem moving down so set them in place
+      // Player collided when moving down so set them in place
       let newGameGrid = getNewGridWithCellShape(
         gameGrid,
         player.tetromino.shape,
