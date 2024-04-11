@@ -15,7 +15,7 @@ export default function App() {
           React Arcade
         </h1>
       </header>
-      <main className="container mx-auto flex-grow px-8 text-center">
+      <main className="container mx-auto max-w-screen-md flex-grow px-8 text-center">
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
           Welcome to React Arcade! These games have been made as an education
           project and are by no means polished products.
@@ -26,7 +26,7 @@ export default function App() {
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
           Select a game below:
         </p>
-        <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-2 text-xl md:grid-cols-2">
+        <div className="mx-auto mt-8 grid  grid-cols-1 gap-2 text-xl md:grid-cols-2">
           {gameList.map((game) => (
             <Link
               to={game.href}
