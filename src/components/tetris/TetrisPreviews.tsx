@@ -16,7 +16,7 @@ const TetrisPreviews = memo(function TetrisPreviews({
   const previewTetrominoes = player.nextTetrominoes.slice().reverse();
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       {previewTetrominoes.map((tetromino, i) => (
         <TetrisPreview
           key={`preview-${i}`}
