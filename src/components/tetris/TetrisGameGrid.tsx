@@ -42,7 +42,6 @@ export default function TetrisGameGrid({
 
     // Add the player's "ghost"
     const ghostPos = getPlayerDropPosition(player, newGrid);
-    console.log(ghostPos, player.position);
     newGrid = getNewGridWithCellShape(
       newGrid,
       player.tetromino.shape,
