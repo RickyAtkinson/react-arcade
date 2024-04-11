@@ -15,7 +15,7 @@ export default function App() {
           React Arcade
         </h1>
       </header>
-      <main className="container mx-auto max-w-screen-md flex-grow px-8 text-center">
+      <main className="container mx-auto max-w-screen-md flex-grow px-8 pb-6 text-center">
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
           Welcome to React Arcade! These games have been made as an educational
           project and are by no means polished products.

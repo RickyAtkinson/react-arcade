@@ -65,7 +65,7 @@ export default function Tetris() {
           </Button>
         </Navbar>
       </header>
-      <main className="container mx-auto flex-grow px-8">
+      <main className="container mx-auto flex-grow px-8 pb-6">
         <div className="flex justify-center gap-3">
           <TetrisGameController
             ref={gameControllerRef}
