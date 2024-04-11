@@ -13,7 +13,7 @@ const TetrisStatsDisplay = memo(function GameStatsDisplay({
       <li className="text-zinc-400">Level</li>
       <li className="mb-4 text-3xl font-bold">{level}</li>
       <li className="text-zinc-400">Points</li>
-      <li className="text-3xl font-bold">{points}</li>
+      <li className="text-xl font-bold">{points}</li>
     </ul>
   );
 });

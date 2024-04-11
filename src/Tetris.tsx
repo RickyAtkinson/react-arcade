@@ -53,7 +53,7 @@ export default function Tetris() {
   return (
     <>
       <header className="container mx-auto px-8 pb-6 pt-6 text-center">
-        <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-3xl">
+        <h1 className="scroll-m-20 bg-gradient-to-br from-blue-700 to-purple-700 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent lg:text-4xl">
           Tetris
         </h1>
         <Navbar>
@@ -70,11 +70,11 @@ export default function Tetris() {
           <TetrisGameController
             ref={gameControllerRef}
             isPlaying={isPlaying}
-            quitGame={quitGame}
             isGameOver={isGameOver}
             setIsGameOver={setIsGameOver}
             isGamePaused={isGamePaused}
             setIsGamePaused={setIsGamePaused}
+            quitGame={quitGame}
             addClearedLines={addClearedLines}
             frameInterval={frameInterval}
             pauseFrameInterval={pauseFrameInterval}

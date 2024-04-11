@@ -16,11 +16,14 @@ export default function App() {
         </h1>
       </header>
       <main className="container mx-auto flex-grow px-8 text-center">
-        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-6">
-          Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
-          cillum sint consectetur cupidatat.
+        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
+          Welcome to React Arcade! These games have been made as an education
+          project and are by no means polished products.
         </p>
-        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-6">
+        <p className="mx-auto max-w-lg font-bold leading-7 [&:not(:first-child)]:mt-4">
+          🚧 WORK IN PROGRESS 🚧
+        </p>
+        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
           Select a game below:
         </p>
         <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-2 text-xl md:grid-cols-2">
