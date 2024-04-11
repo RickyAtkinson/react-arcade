@@ -9,7 +9,7 @@ export default function Footer() {
           href="https://github.com/RickyAtkinson/react-arcade"
           target="_blank"
           rel="noreferrer"
-          className=" transition-colors hover:text-[#6cc644]"
+          className=" transition-colors hover:text-[#2dba4e]"
         >
           <IconLogoGithub width="1.5rem" height="1.5rem" />
         </a>
