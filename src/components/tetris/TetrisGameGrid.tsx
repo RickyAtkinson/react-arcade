@@ -13,11 +13,15 @@ export default function TetrisGameGrid({
   gameGrid,
   setGameGrid,
   isPlaying,
+  isGameOver,
+  isGamePaused,
   player,
 }: {
   gameGrid: TetrisGrid;
   setGameGrid: SetStateFunction<TetrisGrid>;
   isPlaying: boolean;
+  isGameOver: boolean;
+  isGamePaused: boolean;
   player: TetrisPlayer;
 }) {
   // Create a ref to the current grid for the useEffect to avoid constantly triggering rerenders
@@ -64,7 +68,12 @@ export default function TetrisGameGrid({
     >
       {gameGrid.map((row, y) =>
         row.map((cell, x) => (
-          <TetrisGridCell key={`cell-${x}-${y}`} cell={cell} />
+          <TetrisGridCell
+            key={`cell-${x}-${y}`}
+            cell={cell}
+            isGameOver={isGameOver}
+            isGamePaused={isGamePaused}
+          />
         )),
       )}
     </div>

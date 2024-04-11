@@ -79,7 +79,12 @@ export default function Tetris() {
             nextPlayer={nextPlayer}
           />
           <div className="flex flex-col justify-between">
-            <TetrisPreviews player={player} isPlaying={isPlaying} />
+            <TetrisPreviews
+              player={player}
+              isPlaying={isPlaying}
+              isGameOver={isGameOver}
+              isGamePaused={isGamePaused}
+            />
             <TetrisStatsDisplay gameStats={gameStats} />
           </div>
         </div>

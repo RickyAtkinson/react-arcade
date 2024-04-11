@@ -2,7 +2,15 @@ import { TetrisCell } from "@/tetris";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export default function TetrisGridCell({ cell }: { cell: TetrisCell }) {
+export default function TetrisGridCell({
+  cell,
+  isGameOver,
+  isGamePaused,
+}: {
+  cell: TetrisCell;
+  isGameOver: boolean;
+  isGamePaused: boolean;
+}) {
   return (
     <div
       className={twMerge(
@@ -22,6 +30,7 @@ export default function TetrisGridCell({ cell }: { cell: TetrisCell }) {
           "border-red-700 border-b-red-800 border-t-red-500 bg-red-600":
             cell.occupiedBy === "Z",
           "border-2 border-zinc-800": cell.occupiedBy === "Ghost",
+          "opacity-10": isGameOver || isGamePaused,
         }),
       )}
     ></div>

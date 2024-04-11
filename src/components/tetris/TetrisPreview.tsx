@@ -6,9 +6,13 @@ import TetrisGridCell from "./TetrisGridCell";
 const TetrisPreview = memo(function TetrisPreview({
   tetromino,
   isPlaying,
+  isGameOver,
+  isGamePaused,
 }: {
   tetromino: TetrisTetromino;
   isPlaying: boolean;
+  isGameOver: boolean;
+  isGamePaused: boolean;
 }) {
   const { shape, name } = tetromino;
 
@@ -25,7 +29,12 @@ const TetrisPreview = memo(function TetrisPreview({
         {isPlaying &&
           grid.map((row, y) =>
             row.map((cell, x) => (
-              <TetrisGridCell key={`board-cell-${x}-${y}]`} cell={cell} />
+              <TetrisGridCell
+                key={`board-cell-${x}-${y}]`}
+                cell={cell}
+                isGameOver={isGameOver}
+                isGamePaused={isGamePaused}
+              />
             )),
           )}
       </div>

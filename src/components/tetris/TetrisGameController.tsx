@@ -135,13 +135,30 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   }, frameInterval);
 
   return (
-    <button ref={ref} onKeyDown={handleOnKeyDown}>
+    <button ref={ref} onKeyDown={handleOnKeyDown} className="relative">
       <TetrisGameGrid
         gameGrid={gameGrid}
         setGameGrid={setGameGrid}
         isPlaying={isPlaying}
+        isGameOver={isGameOver}
+        isGamePaused={isGamePaused}
         player={player}
       />
+      {!isPlaying && (
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold">
+          Press the Play button to begin
+        </span>
+      )}
+      {isPlaying && isGameOver && (
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold">
+          Game Over
+        </span>
+      )}
+      {isPlaying && !isGameOver && isGamePaused && (
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold">
+          Paused
+        </span>
+      )}
     </button>
   );
 });
