@@ -15,7 +15,7 @@ import TetrisGameGrid from "./TetrisGameGrid";
 const TetrisGameController = forwardRef(function TetrisGameController(
   {
     isPlaying,
-    resetGame,
+    quitGame,
     isGameOver,
     setIsGameOver,
     isGamePaused,
@@ -32,7 +32,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
     nextPlayer,
   }: {
     isPlaying: boolean;
-    resetGame: () => void;
+    quitGame: () => void;
     isGameOver: boolean;
     setIsGameOver: SetStateFunction<boolean>;
     isGamePaused: boolean;
@@ -58,7 +58,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
     if (action === null) return;
 
     if (action === "Quit") {
-      resetGame();
+      quitGame();
     } else if (!isGameOver && action === "Pause") {
       isGamePaused ? resumeFrameInterval() : pauseFrameInterval();
       setIsGamePaused(!isGamePaused);

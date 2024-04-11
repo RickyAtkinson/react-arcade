@@ -41,11 +41,10 @@ export default function TetrisGameGrid({
     let newGrid = getOccupiedGridCells(gameGridRef.current);
 
     // Add the player's "ghost"
-    const ghostPos = getPlayerDropPosition(player, newGrid);
     newGrid = getNewGridWithCellShape(
       newGrid,
       player.tetromino.shape,
-      ghostPos,
+      getPlayerDropPosition(player, newGrid),
       "Ghost",
     );
 

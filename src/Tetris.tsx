@@ -31,7 +31,7 @@ export default function Tetris() {
     gameControllerRef.current?.focus();
   }
 
-  function resetGame() {
+  function quitGame() {
     setIsPlaying(false);
     setIsGameOver(false);
     setIsGamePaused(false);
@@ -42,7 +42,12 @@ export default function Tetris() {
   }
 
   function toggleGame() {
-    isPlaying ? resetGame() : startGame();
+    isPlaying ? quitGame() : startGame();
+  }
+
+  function resetGame() {
+    quitGame();
+    startGame();
   }
 
   return (
@@ -55,6 +60,9 @@ export default function Tetris() {
           <Button hover={isPlaying ? "red" : "green"} onClick={toggleGame}>
             {isPlaying ? "Quit" : "Play"}
           </Button>
+          <Button disabled={!isPlaying} hover="blue" onClick={resetGame}>
+            Reset
+          </Button>
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8">
@@ -62,7 +70,7 @@ export default function Tetris() {
           <TetrisGameController
             ref={gameControllerRef}
             isPlaying={isPlaying}
-            resetGame={resetGame}
+            quitGame={quitGame}
             isGameOver={isGameOver}
             setIsGameOver={setIsGameOver}
             isGamePaused={isGamePaused}
