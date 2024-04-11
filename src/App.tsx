@@ -26,7 +26,7 @@ export default function App() {
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
           Select a game below:
         </p>
-        <div className="mx-auto mt-8 grid  grid-cols-1 gap-2 text-xl md:grid-cols-2">
+        <div className="mx-auto mt-8 grid  grid-cols-1 gap-3 text-xl md:grid-cols-2">
           {gameList.map((game) => (
             <Link
               to={game.href}
