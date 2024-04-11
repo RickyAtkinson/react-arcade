@@ -17,7 +17,7 @@ export default function App() {
       </header>
       <main className="container mx-auto max-w-screen-md flex-grow px-8 text-center">
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
-          Welcome to React Arcade! These games have been made as an education
+          Welcome to React Arcade! These games have been made as an educational
           project and are by no means polished products.
         </p>
         <p className="mx-auto max-w-lg font-bold leading-7 [&:not(:first-child)]:mt-4">
