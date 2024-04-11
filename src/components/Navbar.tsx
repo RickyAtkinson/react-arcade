@@ -5,7 +5,10 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
   return (
     <nav className="mt-6 flex flex-row justify-center gap-4 align-middle">
       {children}
-      <Link to="/" className={getButtonClassName()}>
+      <Link
+        to={process.env.NODE_ENV === "production" ? "/react-arcade" : "/"}
+        className={getButtonClassName()}
+      >
         Home
       </Link>
     </nav>
