@@ -16,17 +16,17 @@ export default function App() {
         </h1>
       </header>
       <main className="container mx-auto max-w-screen-md flex-grow px-8 pb-6 text-center">
-        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
+        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-6">
           Welcome to React Arcade! These games have been made as an educational
           project and are by no means polished products.
         </p>
-        <p className="mx-auto max-w-lg font-bold leading-7 [&:not(:first-child)]:mt-4">
+        <p className="mx-auto max-w-lg font-bold leading-7 [&:not(:first-child)]:mt-6">
           🚧 WORK IN PROGRESS 🚧
         </p>
-        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-4">
+        <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-6">
           Select a game below:
         </p>
-        <div className="mx-auto mt-8 grid  grid-cols-1 gap-3 text-xl md:grid-cols-2">
+        <div className="mx-auto mt-8 grid grid-cols-1 gap-3 text-xl md:grid-cols-2">
           {gameList.map((game) => (
             <Link
               to={game.href}
