@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { COLUMNS, RESOLUTION, ROWS } from "@/data/tetris";
 import { TetrisGrid, TetrisPlayer } from "@/tetris";
+import { SetStateFunction } from "@/index";
+import { COLUMNS, RESOLUTION, ROWS } from "@/data/tetris";
 import {
   getNewGridWithCellShape,
   getOccupiedGridCells,
 } from "@/utils/tetris/grid";
-import TetrisGridCell from "./TetrisGridCell";
-import { SetStateFunction } from "@/index";
 import { getPlayerDropPosition } from "@/utils/tetris/playerController";
+import TetrisGridCell from "./TetrisGridCell";
 
 export default function TetrisGameGrid({
   gameGrid,

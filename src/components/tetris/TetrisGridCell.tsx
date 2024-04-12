@@ -1,6 +1,6 @@
-import { TetrisCell } from "@/tetris";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { TetrisCell } from "@/tetris";
 
 export default function TetrisGridCell({
   cell,

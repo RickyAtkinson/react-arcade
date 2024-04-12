@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "@/components/Button";
-import Navbar from "./components/Navbar";
+import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
 
 export default function Snake() {

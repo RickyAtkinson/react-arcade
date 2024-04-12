@@ -6,7 +6,7 @@ import {
   FRAME_INTERVAL_DECREMENT,
 } from "@/data/tetris";
 
-export function useFrameInterval(
+export default function useFrameInterval(
   gameStats: TetrisGameStats,
 ): [number | null, () => void, () => void, () => void] {
   const [frameInterval, setFrameInterval] = useState<number | null>(null);

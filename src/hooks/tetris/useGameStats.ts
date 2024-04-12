@@ -14,7 +14,7 @@ const getDefaultGameStats: TetrisGameStats = {
   points: 0,
 };
 
-export function useGameStats(): [
+export default function useGameStats(): [
   TetrisGameStats,
   (clearedLines: number) => void,
   () => void,

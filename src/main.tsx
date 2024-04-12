@@ -5,7 +5,7 @@ import Concentration from "@/Concentration";
 import GameOfLife from "@/GameOfLife";
 import Snake from "@/Snake";
 import Tetris from "@/Tetris";
-import Footer from "./components/Footer";
+import Footer from "@/components/Footer";
 
 createRoot(document.getElementById("root")!).render(
   <>

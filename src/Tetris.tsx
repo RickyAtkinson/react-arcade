@@ -1,20 +1,20 @@
 import { useRef, useState } from "react";
-import useGameBoard from "@/hooks/tetris/useGameGrid";
-import usePlayer from "@/hooks/tetris/usePlayer";
-import { useGameStats } from "./hooks/tetris/useGameStats";
-import { useFrameInterval } from "./hooks/tetris/useFrameInterval";
-import Button from "@/components/Button";
-import Navbar from "@/components/Navbar";
-import TetrisGameController from "@/components/tetris/TetrisGameController";
-import TetrisStatsDisplay from "./components/tetris/TetrisStatsDisplay";
-import TetrisPreviews from "./components/tetris/TetrisPreviews";
-import Modal from "@/components/Modal";
 import {
   POINT_MULTIPLIER_1_LINE,
   POINT_MULTIPLIER_2_LINE,
   POINT_MULTIPLIER_3_LINE,
   POINT_MULTIPLIER_4_LINE,
 } from "./data/tetris";
+import useGameBoard from "@/hooks/tetris/useGameGrid";
+import usePlayer from "@/hooks/tetris/usePlayer";
+import useGameStats from "@/hooks/tetris/useGameStats";
+import useFrameInterval from "@/hooks/tetris/useFrameInterval";
+import Button from "@/components/Button";
+import Navbar from "@/components/Navbar";
+import TetrisGameController from "@/components/tetris/TetrisGameController";
+import TetrisStatsDisplay from "@/components/tetris/TetrisStatsDisplay";
+import TetrisPreviews from "@/components/tetris/TetrisPreviews";
+import Modal from "@/components/Modal";
 
 export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);

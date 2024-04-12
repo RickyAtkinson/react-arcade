@@ -1,8 +1,8 @@
 import { Position } from "@/index";
 import { TetrisAction, TetrisGrid, TetrisPlayer, TetrisShape } from "@/tetris";
+import { ROWS } from "@/data/tetris";
 import { checkCollision } from "./grid";
 import { getRotatedShape } from "./tetrominoes";
-import { ROWS } from "@/data/tetris";
 
 function attemptPlayerMove(
   action: TetrisAction,
