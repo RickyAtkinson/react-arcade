@@ -1,18 +1,25 @@
 import { forwardRef } from "react";
 import { SnakeGrid } from "@/snake";
 import SnakeGameGrid from "./SnakeGameGrid";
+import { Position, SetStateFunction } from "@/index";
 
 const SnakeGameController = forwardRef(function SnakeGameGridController(
   {
-    gameGrid,
     isPlaying,
     isGameOver,
     isGamePaused,
+    gameGrid,
+    setGameGrid,
+    snake,
+    apple,
   }: {
-    gameGrid: SnakeGrid;
     isPlaying: boolean;
     isGameOver: boolean;
     isGamePaused: boolean;
+    gameGrid: SnakeGrid;
+    setGameGrid: SetStateFunction<SnakeGrid>;
+    snake: Position[];
+    apple: Position;
   },
   ref: React.Ref<HTMLButtonElement>,
 ) {
@@ -24,6 +31,10 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     <button ref={ref} onKeyDown={handleOnKeyDown} className="relative">
       <SnakeGameGrid
         gameGrid={gameGrid}
+        setGameGrid={setGameGrid}
+        snake={snake}
+        apple={apple}
+        isPlaying={isPlaying}
         isGameOver={isGameOver}
         isGamePaused={isGamePaused}
       />

@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+import { Position } from "@/index";
+import { INITIAL_APPLE, INITIAL_SNAKE } from "@/data/snake";
+import useGameGrid from "@/hooks/snake/useGameGrid";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
-import useGameGrid from "@/hooks/snake/useGameGrid";
 import SnakeGameController from "@/components/snake/SnakeGameController";
 
 export default function Snake() {
@@ -11,7 +13,9 @@ export default function Snake() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
-  const [gameGrid, , resetGameGrid] = useGameGrid();
+  const [gameGrid, setGameGrid, resetGameGrid] = useGameGrid();
+  const [snake, setSnake] = useState<Position[]>([...INITIAL_SNAKE]);
+  const [apple, setApple] = useState<Position>({ ...INITIAL_APPLE });
 
   function startGame() {
     setIsPlaying(true);
@@ -23,6 +27,8 @@ export default function Snake() {
     setIsGameOver(false);
     setIsGamePaused(false);
     resetGameGrid();
+    setSnake([...INITIAL_SNAKE]);
+    setApple({ ...INITIAL_APPLE });
   }
 
   function toggleGame() {
@@ -61,11 +67,14 @@ export default function Snake() {
       <main className="container mx-auto flex-grow px-8 pb-6">
         <div className="flex justify-center gap-3">
           <SnakeGameController
-            ref={gameControllerRef}
-            gameGrid={gameGrid}
             isPlaying={isPlaying}
             isGameOver={isGameOver}
             isGamePaused={isGamePaused}
+            ref={gameControllerRef}
+            gameGrid={gameGrid}
+            setGameGrid={setGameGrid}
+            snake={snake}
+            apple={apple}
           />
         </div>
       </main>
