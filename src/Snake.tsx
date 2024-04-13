@@ -2,9 +2,35 @@ import { useState } from "react";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
+import useGameGrid from "@/hooks/snake/useGameGrid";
+import SnakeGameGrid from "./components/snake/SnakeGameGrid";
 
 export default function Snake() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
+  const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
+  const [gameGrid, , resetGameGrid] = useGameGrid();
+
+  function startGame() {
+    setIsPlaying(true);
+  }
+
+  function quitGame() {
+    setIsPlaying(false);
+    setIsGameOver(false);
+    setIsGamePaused(false);
+    resetGameGrid();
+  }
+
+  function toggleGame() {
+    isPlaying ? quitGame() : startGame();
+  }
+
+  function resetGame() {
+    quitGame();
+    startGame();
+  }
 
   return (
     <>
@@ -13,8 +39,11 @@ export default function Snake() {
           Snake
         </h1>
         <Navbar>
-          <Button disabled={true} hover="green">
-            Play
+          <Button hover={isPlaying ? "red" : "green"} onClick={toggleGame}>
+            {isPlaying ? "Quit" : "Play"}
+          </Button>
+          <Button disabled={!isPlaying} hover="blue" onClick={resetGame}>
+            Reset
           </Button>
           <Button
             color="blue"
@@ -28,9 +57,13 @@ export default function Snake() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6">
-        <p className="text-center font-bold leading-7 [&:not(:first-child)]:mt-6">
-          Coming soon...
-        </p>
+        <div className="flex justify-center gap-3">
+          <SnakeGameGrid
+            gameGrid={gameGrid}
+            isGameOver={isGameOver}
+            isGamePaused={isGamePaused}
+          />
+        </div>
       </main>
       {showModal && (
         <Modal className="border-1 max-h-[80%] w-4/5 max-w-screen-sm rounded border border-zinc-700 bg-zinc-950 p-6 text-left">
