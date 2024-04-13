@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
 import useGameGrid from "@/hooks/snake/useGameGrid";
-import SnakeGameGrid from "./components/snake/SnakeGameGrid";
+import SnakeGameController from "@/components/snake/SnakeGameController";
 
 export default function Snake() {
+  const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
@@ -14,6 +15,7 @@ export default function Snake() {
 
   function startGame() {
     setIsPlaying(true);
+    gameControllerRef.current?.focus();
   }
 
   function quitGame() {
@@ -58,8 +60,10 @@ export default function Snake() {
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6">
         <div className="flex justify-center gap-3">
-          <SnakeGameGrid
+          <SnakeGameController
+            ref={gameControllerRef}
             gameGrid={gameGrid}
+            isPlaying={isPlaying}
             isGameOver={isGameOver}
             isGamePaused={isGamePaused}
           />
