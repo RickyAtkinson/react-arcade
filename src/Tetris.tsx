@@ -5,7 +5,7 @@ import {
   POINT_MULTIPLIER_3_LINE,
   POINT_MULTIPLIER_4_LINE,
 } from "./data/tetris";
-import useGameBoard from "@/hooks/tetris/useGameGrid";
+import useGameGrid from "@/hooks/tetris/useGameGrid";
 import usePlayer from "@/hooks/tetris/usePlayer";
 import useGameStats from "@/hooks/tetris/useGameStats";
 import useFrameInterval from "@/hooks/tetris/useFrameInterval";
@@ -29,7 +29,7 @@ export default function Tetris() {
     resumeFrameInterval,
     resetFrameInterval,
   ] = useFrameInterval(gameStats);
-  const [gameGrid, setGameGrid, resetGameGrid] = useGameBoard();
+  const [gameGrid, setGameGrid, resetGameGrid] = useGameGrid();
   const [player, setPlayerPosition, setPlayerShape, nextPlayer, resetPlayer] =
     usePlayer();
 
