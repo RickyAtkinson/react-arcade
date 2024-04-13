@@ -139,10 +139,10 @@ const TetrisGameController = forwardRef(function TetrisGameController(
       <TetrisGameGrid
         gameGrid={gameGrid}
         setGameGrid={setGameGrid}
+        player={player}
         isPlaying={isPlaying}
         isGameOver={isGameOver}
         isGamePaused={isGamePaused}
-        player={player}
       />
       {!isPlaying && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold">

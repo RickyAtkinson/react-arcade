@@ -12,17 +12,17 @@ import TetrisGridCell from "./TetrisGridCell";
 export default function TetrisGameGrid({
   gameGrid,
   setGameGrid,
+  player,
   isPlaying,
   isGameOver,
   isGamePaused,
-  player,
 }: {
   gameGrid: TetrisGrid;
   setGameGrid: SetStateFunction<TetrisGrid>;
+  player: TetrisPlayer;
   isPlaying: boolean;
   isGameOver: boolean;
   isGamePaused: boolean;
-  player: TetrisPlayer;
 }) {
   // Create a ref to the current grid for the useEffect to avoid constantly triggering rerenders
   const gameGridRef = useRef<TetrisGrid>(gameGrid);
