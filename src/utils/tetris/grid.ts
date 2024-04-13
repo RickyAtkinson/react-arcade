@@ -2,12 +2,6 @@ import { Position } from "@/index";
 import { TetrisGrid, TetrisShape, TetrominoName } from "@/tetris";
 import { DEFAULT_CELL } from "@/data/tetris";
 
-export function createEmptyGrid(rows: number, cols: number): TetrisGrid {
-  return Array.from({ length: rows }, () =>
-    Array.from({ length: cols }, () => ({ ...DEFAULT_CELL })),
-  );
-}
-
 export function getNewGridWithCellShape(
   gameGrid: TetrisGrid,
   shape: TetrisShape,

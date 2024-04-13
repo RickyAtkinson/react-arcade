@@ -1,6 +1,8 @@
 import { memo } from "react";
 import { TetrisTetromino } from "@/tetris";
-import { createEmptyGrid, getNewGridWithCellShape } from "@/utils/tetris/grid";
+import { DEFAULT_CELL } from "@/data/tetris";
+import { getNewGridWithCellShape } from "@/utils/tetris/grid";
+import { createEmptyGrid } from "@/utils/grid";
 import TetrisGridCell from "./TetrisGridCell";
 
 const TetrisPreview = memo(function TetrisPreview({
@@ -17,7 +19,7 @@ const TetrisPreview = memo(function TetrisPreview({
   const { shape, name } = tetromino;
 
   const grid = getNewGridWithCellShape(
-    createEmptyGrid(4, 4),
+    createEmptyGrid(4, 4, DEFAULT_CELL),
     shape,
     { x: 0, y: 0 },
     name,
