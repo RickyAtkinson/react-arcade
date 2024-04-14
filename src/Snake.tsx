@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Position } from "@/index";
-import { INITIAL_APPLE, INITIAL_SNAKE } from "@/data/snake";
+import { Direction } from "@/snake";
+import { INITIAL_APPLE, INITIAL_DIRECTION, INITIAL_SNAKE } from "@/data/snake";
 import useGameGrid from "@/hooks/snake/useGameGrid";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
@@ -16,6 +17,9 @@ export default function Snake() {
   const [gameGrid, setGameGrid, resetGameGrid] = useGameGrid();
   const [snake, setSnake] = useState<Position[]>([...INITIAL_SNAKE]);
   const [apple, setApple] = useState<Position>({ ...INITIAL_APPLE });
+  const [direction, setDirection] = useState<Direction>({
+    ...INITIAL_DIRECTION,
+  });
 
   function startGame() {
     setIsPlaying(true);
@@ -29,6 +33,7 @@ export default function Snake() {
     resetGameGrid();
     setSnake([...INITIAL_SNAKE]);
     setApple({ ...INITIAL_APPLE });
+    setDirection({ ...INITIAL_DIRECTION });
   }
 
   function toggleGame() {
@@ -70,11 +75,15 @@ export default function Snake() {
             isPlaying={isPlaying}
             isGameOver={isGameOver}
             isGamePaused={isGamePaused}
+            setIsGameOver={setIsGameOver}
             ref={gameControllerRef}
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}
             snake={snake}
+            setSnake={setSnake}
             apple={apple}
+            direction={direction}
+            setDirection={setDirection}
           />
         </div>
       </main>

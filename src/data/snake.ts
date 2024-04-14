@@ -1,5 +1,5 @@
 import { Position } from "@/index";
-import { SnakeCell } from "@/snake";
+import { Direction, SnakeCell } from "@/snake";
 
 export const COLUMNS = 20; // The number of columns in the game board.
 export const ROWS = 20; // The number of rows in the game board.
@@ -12,3 +12,4 @@ export const INITIAL_SNAKE: Position[] = [
   { x: 8, y: 8 },
 ];
 export const INITIAL_APPLE: Position = { x: 8, y: 3 };
+export const INITIAL_DIRECTION: Direction = { x: 0, y: -1 };
