@@ -73,7 +73,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
     }
   }
 
-  useInterval(() => {
+  function gameLoop() {
     if (!isPlaying || isGamePaused || isGameOver) return;
 
     const desiredPosition = { x: player.position.x, y: player.position.y + 1 };
@@ -132,7 +132,9 @@ const TetrisGameController = forwardRef(function TetrisGameController(
       // Get the next tetromino and update the player
       nextPlayer();
     }
-  }, frameInterval);
+  }
+
+  useInterval(() => gameLoop(), frameInterval);
 
   return (
     <button ref={ref} onKeyDown={handleOnKeyDown} className="relative">
