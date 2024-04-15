@@ -14,6 +14,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     isGameOver,
     setIsGameOver,
     isGamePaused,
+    setIsGamePaused,
     gameScore,
     setGameScore,
     frameInterval,
@@ -27,11 +28,13 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     setApple,
     direction,
     setDirection,
+    quitGame,
   }: {
     isPlaying: boolean;
     isGameOver: boolean;
     setIsGameOver: SetStateFunction<boolean>;
     isGamePaused: boolean;
+    setIsGamePaused: SetStateFunction<boolean>;
     gameScore: number;
     setGameScore: SetStateFunction<number>;
     frameInterval: number | null;
@@ -45,6 +48,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     setApple: SetStateFunction<Position>;
     direction: Direction;
     setDirection: SetStateFunction<Direction>;
+    quitGame: () => void;
   },
   ref: React.Ref<HTMLButtonElement>,
 ) {
@@ -52,16 +56,17 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     const action = getActionForKeyCode(code);
 
     if (action === "Quit") {
-      console.log("Quit");
-    } else if (action === "Pause") {
-      console.log("Pause");
-    } else if (action === "MoveLeft") {
+      quitGame();
+    } else if (!isGameOver && action === "Pause") {
+      isGamePaused ? resumeFrameInterval() : pauseFrameInterval();
+      setIsGamePaused((prev) => !prev);
+    } else if (!isGameOver && !isGamePaused && action === "MoveLeft") {
       setDirection({ x: -1, y: 0 });
-    } else if (action === "MoveRight") {
+    } else if (!isGameOver && !isGamePaused && action === "MoveRight") {
       setDirection({ x: 1, y: 0 });
-    } else if (action === "MoveUp") {
+    } else if (!isGameOver && !isGamePaused && action === "MoveUp") {
       setDirection({ x: 0, y: -1 });
-    } else if (action === "MoveDown") {
+    } else if (!isGameOver && !isGamePaused && action === "MoveDown") {
       setDirection({ x: 0, y: 1 });
     }
   }
@@ -96,7 +101,6 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
       y: snakeCopy[0].y + direction.y,
     };
 
-    // Check for collision
     if (checkCollision(newSnakehead, snake)) {
       setIsGameOver(true);
     } else {

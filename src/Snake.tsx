@@ -86,6 +86,7 @@ export default function Snake() {
             isGameOver={isGameOver}
             setIsGameOver={setIsGameOver}
             isGamePaused={isGamePaused}
+            setIsGamePaused={setIsGamePaused}
             gameScore={gameScore}
             setGameScore={setGameScore}
             frameInterval={frameInterval}
@@ -100,6 +101,7 @@ export default function Snake() {
             setApple={setApple}
             direction={direction}
             setDirection={setDirection}
+            quitGame={quitGame}
           />
         </div>
       </main>
