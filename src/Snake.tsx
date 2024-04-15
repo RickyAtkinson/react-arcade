@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
 import SnakeGameController from "@/components/snake/SnakeGameController";
+import useFrameInterval from "./hooks/snake/useFrameInterval";
 
 export default function Snake() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
@@ -15,6 +16,12 @@ export default function Snake() {
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
   const [gameScore, setGameScore] = useState<number>(0);
+  const [
+    frameInterval,
+    pauseFrameInterval,
+    resumeFrameInterval,
+    resetFrameInterval,
+  ] = useFrameInterval(gameScore);
   const [gameGrid, setGameGrid, resetGameGrid] = useGameGrid();
   const [snake, setSnake] = useState<Position[]>([...INITIAL_SNAKE]);
   const [apple, setApple] = useState<Position>({ ...INITIAL_APPLE });
@@ -32,6 +39,7 @@ export default function Snake() {
     setIsGameOver(false);
     setIsGamePaused(false);
     setGameScore(0);
+    resetFrameInterval(); // TODO: Is this needed with the useEffect updating it on new gaem scores?
     resetGameGrid();
     setSnake([...INITIAL_SNAKE]);
     setApple({ ...INITIAL_APPLE });
@@ -80,6 +88,9 @@ export default function Snake() {
             isGamePaused={isGamePaused}
             gameScore={gameScore}
             setGameScore={setGameScore}
+            frameInterval={frameInterval}
+            pauseFrameInterval={pauseFrameInterval}
+            resumeFrameInterval={resumeFrameInterval}
             ref={gameControllerRef}
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}

@@ -16,6 +16,9 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     isGamePaused,
     gameScore,
     setGameScore,
+    frameInterval,
+    pauseFrameInterval,
+    resumeFrameInterval,
     gameGrid,
     setGameGrid,
     snake,
@@ -31,6 +34,9 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     isGamePaused: boolean;
     gameScore: number;
     setGameScore: SetStateFunction<number>;
+    frameInterval: number | null;
+    pauseFrameInterval: () => void;
+    resumeFrameInterval: () => void;
     gameGrid: SnakeGrid;
     setGameGrid: SetStateFunction<SnakeGrid>;
     snake: Position[];
@@ -92,7 +98,6 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
 
     // Check for collision
     if (checkCollision(newSnakehead, snake)) {
-      console.log(snake, newSnakehead, direction, apple, gameGrid);
       setIsGameOver(true);
     } else {
       snakeCopy.unshift(newSnakehead);
@@ -103,7 +108,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     setSnake(snakeCopy);
   }
 
-  useInterval(() => gameLoop(), 500); // TODO: useFrameInterval duration
+  useInterval(() => gameLoop(), frameInterval);
 
   return (
     <button ref={ref} onKeyDown={handleOnKeyDown} className="relative">
