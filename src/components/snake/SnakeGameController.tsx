@@ -1,10 +1,12 @@
 import { forwardRef } from "react";
 import { Position, SetStateFunction } from "@/index";
 import { Direction, SnakeGrid } from "@/snake";
-import SnakeGameGrid from "./SnakeGameGrid";
-import checkCollision from "@/utils/snake/grid";
+import { COLUMNS, ROWS } from "@/data/snake";
+import { checkCollision } from "@/utils/snake/grid";
 import { useInterval } from "usehooks-ts";
 import { getActionForKeyCode } from "@/utils/snake/input";
+import { getRandomGridCell } from "@/utils/grid";
+import SnakeGameGrid from "./SnakeGameGrid";
 
 const SnakeGameController = forwardRef(function SnakeGameGridController(
   {
@@ -17,6 +19,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     snake,
     setSnake,
     apple,
+    setApple,
     direction,
     setDirection,
   }: {
@@ -29,6 +32,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     snake: Position[];
     setSnake: SetStateFunction<Position[]>;
     apple: Position;
+    setApple: SetStateFunction<Position>;
     direction: Direction;
     setDirection: SetStateFunction<Direction>;
   },
@@ -52,6 +56,27 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     }
   }
 
+  function checkAppleCollision(
+    desiredPosition: Position,
+    currentApple: Position,
+  ) {
+    if (
+      desiredPosition.x === currentApple.x &&
+      desiredPosition.y === currentApple.y
+    ) {
+      // TODO: Award points
+
+      let newApplePos = getRandomGridCell(ROWS, COLUMNS);
+      while (checkCollision(newApplePos, snake)) {
+        newApplePos = getRandomGridCell(ROWS, COLUMNS);
+      }
+
+      setApple(newApplePos);
+      return true;
+    }
+    return false;
+  }
+
   function gameLoop() {
     if (!isPlaying || isGameOver) return;
 
@@ -60,23 +85,20 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
       x: snakeCopy[0].x + direction.x,
       y: snakeCopy[0].y + direction.y,
     };
-    snakeCopy.unshift(newSnakehead);
-
-    // TODO: Check if game is complete
 
     // Check for collision
     if (checkCollision(newSnakehead, snake)) {
-      snakeCopy.shift();
       setIsGameOver(true);
     } else {
-      // TODO: Check apple collision
-      snakeCopy.pop();
+      snakeCopy.unshift(newSnakehead);
+      if (!checkAppleCollision(newSnakehead, apple)) snakeCopy.pop();
+      // TODO: else check if game is complete
     }
 
     setSnake(snakeCopy);
   }
 
-  useInterval(() => gameLoop(), 1000);
+  useInterval(() => gameLoop(), 500); // TODO: useFrameInterval duration
 
   return (
     <button ref={ref} onKeyDown={handleOnKeyDown} className="relative">

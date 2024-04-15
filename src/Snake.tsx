@@ -82,6 +82,7 @@ export default function Snake() {
             snake={snake}
             setSnake={setSnake}
             apple={apple}
+            setApple={setApple}
             direction={direction}
             setDirection={setDirection}
           />

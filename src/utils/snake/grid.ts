@@ -1,10 +1,7 @@
 import { COLUMNS, ROWS } from "@/data/tetris";
 import { Position } from "@/index";
 
-export default function checkCollision(
-  desiredPosition: Position,
-  snake: Position[],
-) {
+export function checkCollision(desiredPosition: Position, snake: Position[]) {
   // Check wall collision
   if (
     desiredPosition.x >= COLUMNS ||
