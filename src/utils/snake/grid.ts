@@ -1,4 +1,4 @@
-import { COLUMNS, ROWS } from "@/data/tetris";
+import { COLUMNS, ROWS } from "@/data/snake";
 import { Position } from "@/index";
 
 export function checkCollision(desiredPosition: Position, snake: Position[]) {
