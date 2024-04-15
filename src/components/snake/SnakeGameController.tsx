@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Position, SetStateFunction } from "@/index";
 import { Direction, SnakeGrid } from "@/snake";
-import { COLUMNS, ROWS } from "@/data/snake";
+import { COLUMNS, POINTS_PER_APPLE, ROWS } from "@/data/snake";
 import { checkCollision } from "@/utils/snake/grid";
 import { useInterval } from "usehooks-ts";
 import { getActionForKeyCode } from "@/utils/snake/input";
@@ -14,6 +14,8 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     isGameOver,
     setIsGameOver,
     isGamePaused,
+    gameScore,
+    setGameScore,
     gameGrid,
     setGameGrid,
     snake,
@@ -25,8 +27,10 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
   }: {
     isPlaying: boolean;
     isGameOver: boolean;
-    isGamePaused: boolean;
     setIsGameOver: SetStateFunction<boolean>;
+    isGamePaused: boolean;
+    gameScore: number;
+    setGameScore: SetStateFunction<number>;
     gameGrid: SnakeGrid;
     setGameGrid: SetStateFunction<SnakeGrid>;
     snake: Position[];
@@ -64,7 +68,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
       desiredPosition.x === currentApple.x &&
       desiredPosition.y === currentApple.y
     ) {
-      // TODO: Award points
+      setGameScore((prev) => prev + POINTS_PER_APPLE);
 
       let newApplePos = getRandomGridCell(ROWS, COLUMNS);
       while (checkCollision(newApplePos, snake)) {
@@ -88,6 +92,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
 
     // Check for collision
     if (checkCollision(newSnakehead, snake)) {
+      console.log(snake, newSnakehead, direction, apple, gameGrid);
       setIsGameOver(true);
     } else {
       snakeCopy.unshift(newSnakehead);
@@ -114,6 +119,11 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
       {!isPlaying && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-green-950">
           Press the Play button to begin
+        </span>
+      )}
+      {isPlaying && (
+        <span className="absolute left-0 top-0 p-2 text-lg font-bold leading-none text-green-950">
+          {gameScore}
         </span>
       )}
       {isPlaying && isGameOver && (

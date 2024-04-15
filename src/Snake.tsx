@@ -14,6 +14,7 @@ export default function Snake() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
+  const [gameScore, setGameScore] = useState<number>(0);
   const [gameGrid, setGameGrid, resetGameGrid] = useGameGrid();
   const [snake, setSnake] = useState<Position[]>([...INITIAL_SNAKE]);
   const [apple, setApple] = useState<Position>({ ...INITIAL_APPLE });
@@ -30,6 +31,7 @@ export default function Snake() {
     setIsPlaying(false);
     setIsGameOver(false);
     setIsGamePaused(false);
+    setGameScore(0);
     resetGameGrid();
     setSnake([...INITIAL_SNAKE]);
     setApple({ ...INITIAL_APPLE });
@@ -74,8 +76,10 @@ export default function Snake() {
           <SnakeGameController
             isPlaying={isPlaying}
             isGameOver={isGameOver}
-            isGamePaused={isGamePaused}
             setIsGameOver={setIsGameOver}
+            isGamePaused={isGamePaused}
+            gameScore={gameScore}
+            setGameScore={setGameScore}
             ref={gameControllerRef}
             gameGrid={gameGrid}
             setGameGrid={setGameGrid}

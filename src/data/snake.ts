@@ -13,3 +13,4 @@ export const INITIAL_SNAKE: Position[] = [
 ];
 export const INITIAL_APPLE: Position = { x: 8, y: 3 };
 export const INITIAL_DIRECTION: Direction = { x: 0, y: -1 };
+export const POINTS_PER_APPLE = 10;
