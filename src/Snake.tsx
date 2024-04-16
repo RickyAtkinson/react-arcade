@@ -13,6 +13,7 @@ export default function Snake() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
   const [gameScore, setGameScore] = useState<number>(0);
@@ -36,6 +37,7 @@ export default function Snake() {
 
   function quitGame() {
     setIsPlaying(false);
+    setIsGameComplete(false);
     setIsGameOver(false);
     setIsGamePaused(false);
     setGameScore(0);
@@ -83,6 +85,8 @@ export default function Snake() {
         <div className="flex justify-center gap-3">
           <SnakeGameController
             isPlaying={isPlaying}
+            isGameComplete={isGameComplete}
+            setIsGameComplete={setIsGameComplete}
             isGameOver={isGameOver}
             setIsGameOver={setIsGameOver}
             isGamePaused={isGamePaused}

@@ -17,3 +17,4 @@ export const POINTS_PER_APPLE = 10;
 export const DEFAULT_FRAME_INTERVAL = 1000;
 export const MINIMUM_FRAME_INTERVAL = 100;
 export const FRAME_INTERVAL_DECREMENT = 50;
+export const MAX_SNAKE_LENGTH = COLUMNS * ROWS;

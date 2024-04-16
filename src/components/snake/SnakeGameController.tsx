@@ -1,7 +1,12 @@
 import { forwardRef } from "react";
 import { Position, SetStateFunction } from "@/index";
 import { Direction, SnakeGrid } from "@/snake";
-import { COLUMNS, POINTS_PER_APPLE, ROWS } from "@/data/snake";
+import {
+  COLUMNS,
+  MAX_SNAKE_LENGTH,
+  POINTS_PER_APPLE,
+  ROWS,
+} from "@/data/snake";
 import { checkCollision } from "@/utils/snake/grid";
 import { useInterval } from "usehooks-ts";
 import { getActionForKeyCode } from "@/utils/snake/input";
@@ -11,6 +16,8 @@ import SnakeGameGrid from "./SnakeGameGrid";
 const SnakeGameController = forwardRef(function SnakeGameGridController(
   {
     isPlaying,
+    isGameComplete,
+    setIsGameComplete,
     isGameOver,
     setIsGameOver,
     isGamePaused,
@@ -31,6 +38,8 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     quitGame,
   }: {
     isPlaying: boolean;
+    isGameComplete: boolean;
+    setIsGameComplete: SetStateFunction<boolean>;
     isGameOver: boolean;
     setIsGameOver: SetStateFunction<boolean>;
     isGamePaused: boolean;
@@ -55,18 +64,39 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
   function handleOnKeyDown({ code }: { code: string }) {
     const action = getActionForKeyCode(code);
 
+    // TODO: Don't allow player to change direction back into the snake body.
     if (action === "Quit") {
       quitGame();
-    } else if (!isGameOver && action === "Pause") {
+    } else if (!isGameOver && !isGameComplete && action === "Pause") {
       isGamePaused ? resumeFrameInterval() : pauseFrameInterval();
       setIsGamePaused((prev) => !prev);
-    } else if (!isGameOver && !isGamePaused && action === "MoveLeft") {
+    } else if (
+      !isGameOver &&
+      !isGamePaused &&
+      !isGameComplete &&
+      action === "MoveLeft"
+    ) {
       setDirection({ x: -1, y: 0 });
-    } else if (!isGameOver && !isGamePaused && action === "MoveRight") {
+    } else if (
+      !isGameOver &&
+      !isGamePaused &&
+      !isGameComplete &&
+      action === "MoveRight"
+    ) {
       setDirection({ x: 1, y: 0 });
-    } else if (!isGameOver && !isGamePaused && action === "MoveUp") {
+    } else if (
+      !isGameOver &&
+      !isGamePaused &&
+      !isGameComplete &&
+      action === "MoveUp"
+    ) {
       setDirection({ x: 0, y: -1 });
-    } else if (!isGameOver && !isGamePaused && action === "MoveDown") {
+    } else if (
+      !isGameOver &&
+      !isGamePaused &&
+      !isGameComplete &&
+      action === "MoveDown"
+    ) {
       setDirection({ x: 0, y: 1 });
     }
   }
@@ -93,7 +123,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
   }
 
   function gameLoop() {
-    if (!isPlaying || isGameOver) return;
+    if (!isPlaying || isGameOver || isGameComplete) return;
 
     const snakeCopy = [...snake];
     const newSnakehead: Position = {
@@ -106,9 +136,8 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     } else {
       snakeCopy.unshift(newSnakehead);
       if (!checkAppleCollision(newSnakehead, apple)) snakeCopy.pop();
-      // TODO: else check if game is complete
+      else if (snakeCopy.length >= MAX_SNAKE_LENGTH) setIsGameComplete(true);
     }
-
     setSnake(snakeCopy);
   }
 
@@ -136,6 +165,11 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
         </span>
       )}
       {isPlaying && isGameOver && (
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold text-green-950">
+          Game Over
+        </span>
+      )}
+      {isPlaying && !isGameOver && isGameComplete && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold text-green-950">
           Game Over
         </span>
