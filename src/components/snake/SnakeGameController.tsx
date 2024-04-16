@@ -1,16 +1,10 @@
 import { forwardRef } from "react";
 import { Position, SetStateFunction } from "@/index";
 import { Direction, SnakeGrid } from "@/snake";
-import {
-  COLUMNS,
-  MAX_SNAKE_LENGTH,
-  POINTS_PER_APPLE,
-  ROWS,
-} from "@/data/snake";
-import { checkCollision } from "@/utils/snake/grid";
+import { MAX_SNAKE_LENGTH } from "@/data/snake";
+import { checkCollision, checkAppleCollision } from "@/utils/snake/grid";
 import { useInterval } from "usehooks-ts";
 import { getActionForKeyCode } from "@/utils/snake/input";
-import { getRandomGridCell } from "@/utils/grid";
 import SnakeGameGrid from "./SnakeGameGrid";
 
 const SnakeGameController = forwardRef(function SnakeGameGridController(
@@ -101,27 +95,6 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     }
   }
 
-  function checkAppleCollision(
-    desiredPosition: Position,
-    currentApple: Position,
-  ) {
-    if (
-      desiredPosition.x === currentApple.x &&
-      desiredPosition.y === currentApple.y
-    ) {
-      setGameScore((prev) => prev + POINTS_PER_APPLE);
-
-      let newApplePos = getRandomGridCell(ROWS, COLUMNS);
-      while (checkCollision(newApplePos, snake)) {
-        newApplePos = getRandomGridCell(ROWS, COLUMNS);
-      }
-
-      setApple(newApplePos);
-      return true;
-    }
-    return false;
-  }
-
   function gameLoop() {
     if (!isPlaying || isGameOver || isGameComplete) return;
 
@@ -135,7 +108,10 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
       setIsGameOver(true);
     } else {
       snakeCopy.unshift(newSnakehead);
-      if (!checkAppleCollision(newSnakehead, apple)) snakeCopy.pop();
+      if (
+        !checkAppleCollision(snake, newSnakehead, apple, setApple, setGameScore)
+      )
+        snakeCopy.pop();
       else if (snakeCopy.length >= MAX_SNAKE_LENGTH) setIsGameComplete(true);
     }
     setSnake(snakeCopy);
