@@ -1,7 +1,12 @@
 import { useRef, useState } from "react";
 import { Position } from "@/index";
 import { Direction } from "@/snake";
-import { INITIAL_APPLE, INITIAL_DIRECTION, INITIAL_SNAKE } from "@/data/snake";
+import {
+  INITIAL_APPLE,
+  INITIAL_DIRECTION,
+  INITIAL_SNAKE,
+  POINTS_PER_APPLE,
+} from "@/data/snake";
 import useGameGrid from "@/hooks/snake/useGameGrid";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
@@ -131,7 +136,14 @@ export default function Snake() {
               Close
             </button>
           </header>
-          <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon.</p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Direct an ever moving snake towards the apples that appear to eat
+            them and get points. Avoid hitting the walls or the snake&apos;s
+            body.
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Eating an apple speeds up and grows the snake.
+          </p>
           <h3 className="leading text-lg font-semibold [&:not(:first-child)]:mt-6">
             Key Binds
           </h3>
@@ -161,6 +173,12 @@ export default function Snake() {
               </tr>
             </tbody>
           </table>
+          <h3 className="leading text-lg font-semibold [&:not(:first-child)]:mt-6">
+            Scoring
+          </h3>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Players are awarded {POINTS_PER_APPLE} per apple eaten.
+          </p>
         </Modal>
       )}
     </>
