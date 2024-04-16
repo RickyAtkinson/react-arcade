@@ -4,12 +4,12 @@ import TetrisPreview from "./TetrisPreview";
 
 const TetrisPreviews = memo(function TetrisPreviews({
   player,
-  isPlaying,
+  isGamePlaying,
   isGameOver,
   isGamePaused,
 }: {
   player: TetrisPlayer;
-  isPlaying: boolean;
+  isGamePlaying: boolean;
   isGameOver: boolean;
   isGamePaused: boolean;
 }) {
@@ -21,7 +21,7 @@ const TetrisPreviews = memo(function TetrisPreviews({
         <TetrisPreview
           key={`preview-${i}`}
           tetromino={tetromino}
-          isPlaying={isPlaying}
+          isGamePlaying={isGamePlaying}
           isGameOver={isGameOver}
           isGamePaused={isGamePaused}
         />

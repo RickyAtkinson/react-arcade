@@ -12,7 +12,7 @@ import useFrameInterval from "./hooks/snake/useFrameInterval";
 export default function Snake() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
   const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
@@ -31,12 +31,12 @@ export default function Snake() {
   });
 
   function startGame() {
-    setIsPlaying(true);
+    setIsGamePlaying(true);
     gameControllerRef.current?.focus();
   }
 
   function quitGame() {
-    setIsPlaying(false);
+    setIsGamePlaying(false);
     setIsGameComplete(false);
     setIsGameOver(false);
     setIsGamePaused(false);
@@ -49,7 +49,7 @@ export default function Snake() {
   }
 
   function toggleGame() {
-    isPlaying ? quitGame() : startGame();
+    isGamePlaying ? quitGame() : startGame();
   }
 
   function resetGame() {
@@ -64,10 +64,10 @@ export default function Snake() {
           Snake
         </h1>
         <Navbar>
-          <Button hover={isPlaying ? "red" : "green"} onClick={toggleGame}>
-            {isPlaying ? "Quit" : "Play"}
+          <Button hover={isGamePlaying ? "red" : "green"} onClick={toggleGame}>
+            {isGamePlaying ? "Quit" : "Play"}
           </Button>
-          <Button disabled={!isPlaying} hover="blue" onClick={resetGame}>
+          <Button disabled={!isGamePlaying} hover="blue" onClick={resetGame}>
             Reset
           </Button>
           <Button
@@ -84,7 +84,7 @@ export default function Snake() {
       <main className="container mx-auto flex-grow px-8 pb-6">
         <div className="flex justify-center gap-3">
           <SnakeGameController
-            isPlaying={isPlaying}
+            isGamePlaying={isGamePlaying}
             isGameComplete={isGameComplete}
             setIsGameComplete={setIsGameComplete}
             isGameOver={isGameOver}

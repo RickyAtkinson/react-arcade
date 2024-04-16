@@ -19,7 +19,7 @@ import Modal from "@/components/Modal";
 export default function Tetris() {
   const gameControllerRef = useRef<HTMLButtonElement>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isGamePaused, setIsGamePaused] = useState<boolean>(false);
   const [gameStats, addClearedLines, resetGameStats] = useGameStats();
@@ -35,12 +35,12 @@ export default function Tetris() {
 
   function startGame() {
     resetFrameInterval();
-    setIsPlaying(true);
+    setIsGamePlaying(true);
     gameControllerRef.current?.focus();
   }
 
   function quitGame() {
-    setIsPlaying(false);
+    setIsGamePlaying(false);
     setIsGameOver(false);
     setIsGamePaused(false);
     pauseFrameInterval();
@@ -50,7 +50,7 @@ export default function Tetris() {
   }
 
   function toggleGame() {
-    isPlaying ? quitGame() : startGame();
+    isGamePlaying ? quitGame() : startGame();
   }
 
   function resetGame() {
@@ -65,10 +65,10 @@ export default function Tetris() {
           Tetris
         </h1>
         <Navbar>
-          <Button hover={isPlaying ? "red" : "green"} onClick={toggleGame}>
-            {isPlaying ? "Quit" : "Play"}
+          <Button hover={isGamePlaying ? "red" : "green"} onClick={toggleGame}>
+            {isGamePlaying ? "Quit" : "Play"}
           </Button>
-          <Button disabled={!isPlaying} hover="blue" onClick={resetGame}>
+          <Button disabled={!isGamePlaying} hover="blue" onClick={resetGame}>
             Reset
           </Button>
           <Button
@@ -86,7 +86,7 @@ export default function Tetris() {
         <div className="flex justify-center gap-3">
           <TetrisGameController
             ref={gameControllerRef}
-            isPlaying={isPlaying}
+            isGamePlaying={isGamePlaying}
             isGameOver={isGameOver}
             setIsGameOver={setIsGameOver}
             isGamePaused={isGamePaused}
@@ -106,7 +106,7 @@ export default function Tetris() {
           <div className="flex flex-col justify-between">
             <TetrisPreviews
               player={player}
-              isPlaying={isPlaying}
+              isGamePlaying={isGamePlaying}
               isGameOver={isGameOver}
               isGamePaused={isGamePaused}
             />

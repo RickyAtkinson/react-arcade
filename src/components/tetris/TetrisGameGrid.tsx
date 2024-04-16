@@ -13,14 +13,14 @@ export default function TetrisGameGrid({
   gameGrid,
   setGameGrid,
   player,
-  isPlaying,
+  isGamePlaying,
   isGameOver,
   isGamePaused,
 }: {
   gameGrid: TetrisGrid;
   setGameGrid: SetStateFunction<TetrisGrid>;
   player: TetrisPlayer;
-  isPlaying: boolean;
+  isGamePlaying: boolean;
   isGameOver: boolean;
   isGamePaused: boolean;
 }) {
@@ -35,7 +35,7 @@ export default function TetrisGameGrid({
   } as React.CSSProperties;
 
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isGamePlaying) return;
 
     // Get a copy of the grid without the old player
     let newGrid = getOccupiedGridCells(gameGridRef.current);
@@ -57,7 +57,7 @@ export default function TetrisGameGrid({
     );
 
     setGameGrid(newGrid);
-  }, [isPlaying, player, setGameGrid]);
+  }, [isGamePlaying, player, setGameGrid]);
 
   return (
     <div

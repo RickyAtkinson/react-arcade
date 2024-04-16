@@ -14,7 +14,7 @@ import TetrisGameGrid from "./TetrisGameGrid";
 
 const TetrisGameController = forwardRef(function TetrisGameController(
   {
-    isPlaying,
+    isGamePlaying,
     isGameOver,
     setIsGameOver,
     isGamePaused,
@@ -31,7 +31,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
     setPlayerShape,
     nextPlayer,
   }: {
-    isPlaying: boolean;
+    isGamePlaying: boolean;
     isGameOver: boolean;
     setIsGameOver: SetStateFunction<boolean>;
     isGamePaused: boolean;
@@ -51,7 +51,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   ref: React.Ref<HTMLButtonElement>,
 ) {
   function handleOnKeyDown({ code }: { code: string }) {
-    if (!isPlaying) return;
+    if (!isGamePlaying) return;
 
     const action = getActionForKeyCode(code);
 
@@ -74,7 +74,7 @@ const TetrisGameController = forwardRef(function TetrisGameController(
   }
 
   function gameLoop() {
-    if (!isPlaying || isGamePaused || isGameOver) return;
+    if (!isGamePlaying || isGamePaused || isGameOver) return;
 
     const desiredPosition = { x: player.position.x, y: player.position.y + 1 };
     if (!checkCollision(gameGrid, desiredPosition, player.tetromino.shape)) {
@@ -142,21 +142,21 @@ const TetrisGameController = forwardRef(function TetrisGameController(
         gameGrid={gameGrid}
         setGameGrid={setGameGrid}
         player={player}
-        isPlaying={isPlaying}
+        isGamePlaying={isGamePlaying}
         isGameOver={isGameOver}
         isGamePaused={isGamePaused}
       />
-      {!isPlaying && (
+      {!isGamePlaying && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold">
           Press the Play button to begin
         </span>
       )}
-      {isPlaying && isGameOver && (
+      {isGamePlaying && isGameOver && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold">
           Game Over
         </span>
       )}
-      {isPlaying && !isGameOver && isGamePaused && (
+      {isGamePlaying && !isGameOver && isGamePaused && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold">
           Paused
         </span>

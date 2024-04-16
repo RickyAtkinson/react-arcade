@@ -10,7 +10,7 @@ export default function SnakeGameGrid({
   setGameGrid,
   snake,
   apple,
-  isPlaying,
+  isGamePlaying,
   isGameOver,
   isGamePaused,
 }: {
@@ -18,7 +18,7 @@ export default function SnakeGameGrid({
   setGameGrid: SetStateFunction<SnakeGrid>;
   snake: Position[];
   apple: Position;
-  isPlaying: boolean;
+  isGamePlaying: boolean;
   isGameOver: boolean;
   isGamePaused: boolean;
 }) {
@@ -29,7 +29,7 @@ export default function SnakeGameGrid({
   } as React.CSSProperties;
 
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isGamePlaying) return;
 
     const newGrid = createEmptyGrid(ROWS, COLUMNS, DEFAULT_CELL);
 
@@ -42,7 +42,7 @@ export default function SnakeGameGrid({
     newGrid[apple.y][apple.x].isOccupiedBy = "Apple";
 
     setGameGrid(newGrid);
-  }, [isPlaying, snake, apple, setGameGrid]);
+  }, [isGamePlaying, snake, apple, setGameGrid]);
 
   return (
     <div

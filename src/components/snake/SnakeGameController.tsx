@@ -10,7 +10,7 @@ import { playerController } from "@/utils/snake/playerController";
 
 const SnakeGameController = forwardRef(function SnakeGameGridController(
   {
-    isPlaying,
+    isGamePlaying,
     isGameComplete,
     setIsGameComplete,
     isGameOver,
@@ -32,7 +32,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
     setDirection,
     quitGame,
   }: {
-    isPlaying: boolean;
+    isGamePlaying: boolean;
     isGameComplete: boolean;
     setIsGameComplete: SetStateFunction<boolean>;
     isGameOver: boolean;
@@ -71,7 +71,7 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
   }
 
   function gameLoop() {
-    if (!isPlaying || isGameOver || isGameComplete) return;
+    if (!isGamePlaying || isGameOver || isGameComplete) return;
 
     const snakeCopy = [...snake];
     const newSnakehead: Position = {
@@ -101,31 +101,31 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
         setGameGrid={setGameGrid}
         snake={snake}
         apple={apple}
-        isPlaying={isPlaying}
+        isGamePlaying={isGamePlaying}
         isGameOver={isGameOver}
         isGamePaused={isGamePaused}
       />
-      {!isPlaying && (
+      {!isGamePlaying && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-green-950">
           Press the Play button to begin
         </span>
       )}
-      {isPlaying && (
+      {isGamePlaying && (
         <span className="absolute left-0 top-0 p-2 text-lg font-bold leading-none text-green-950">
           {gameScore}
         </span>
       )}
-      {isPlaying && isGameOver && (
+      {isGamePlaying && isGameOver && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold text-green-950">
           Game Over
         </span>
       )}
-      {isPlaying && !isGameOver && isGameComplete && (
+      {isGamePlaying && !isGameOver && isGameComplete && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold text-green-950">
           Game Over
         </span>
       )}
-      {isPlaying && !isGameOver && isGamePaused && (
+      {isGamePlaying && !isGameOver && isGamePaused && (
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-extrabold text-green-950">
           Paused
         </span>

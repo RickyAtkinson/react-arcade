@@ -7,12 +7,12 @@ import TetrisGridCell from "./TetrisGridCell";
 
 const TetrisPreview = memo(function TetrisPreview({
   tetromino,
-  isPlaying,
+  isGamePlaying,
   isGameOver,
   isGamePaused,
 }: {
   tetromino: TetrisTetromino;
-  isPlaying: boolean;
+  isGamePlaying: boolean;
   isGameOver: boolean;
   isGamePaused: boolean;
 }) {
@@ -28,7 +28,7 @@ const TetrisPreview = memo(function TetrisPreview({
   return (
     <div className="w-fit rounded bg-zinc-800 p-1">
       <div className="grid h-16 w-16 grid-cols-4 grid-rows-4 gap-0.5">
-        {isPlaying &&
+        {isGamePlaying &&
           grid.map((row, y) =>
             row.map((cell, x) => (
               <TetrisGridCell
