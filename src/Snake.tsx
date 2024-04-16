@@ -74,6 +74,10 @@ export default function Snake() {
             color="blue"
             hover="blue"
             onClick={() => {
+              if (isGamePlaying && !isGamePaused) {
+                pauseFrameInterval();
+                setIsGamePaused(true);
+              }
               setShowModal(true);
             }}
           >
@@ -115,6 +119,11 @@ export default function Snake() {
             <h2 className="text-xl font-bold">Snake Help</h2>
             <button
               onClick={() => {
+                if (isGamePlaying && isGamePaused) {
+                  resumeFrameInterval();
+                  setIsGamePaused(false);
+                  gameControllerRef.current?.focus();
+                }
                 setShowModal(false);
               }}
               className="font-bold leading-none hover:text-red-500"

@@ -75,6 +75,10 @@ export default function Tetris() {
             color="blue"
             hover="blue"
             onClick={() => {
+              if (isGamePlaying && !isGamePaused) {
+                pauseFrameInterval();
+                setIsGamePaused(true);
+              }
               setShowModal(true);
             }}
           >
@@ -120,6 +124,11 @@ export default function Tetris() {
             <h2 className="text-xl font-bold">Tetris Help</h2>
             <button
               onClick={() => {
+                if (isGamePlaying && isGamePaused) {
+                  resumeFrameInterval();
+                  setIsGamePaused(false);
+                  gameControllerRef.current?.focus();
+                }
                 setShowModal(false);
               }}
               className="font-bold leading-none hover:text-red-500"
