@@ -10,6 +10,7 @@ export default function Footer() {
           target="_blank"
           rel="noreferrer"
           className=" transition-colors hover:text-[#2dba4e]"
+          aria-label="GitHub page"
         >
           <IconLogoGithub width="1.5rem" height="1.5rem" />
         </a>

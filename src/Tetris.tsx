@@ -74,6 +74,7 @@ export default function Tetris() {
           <Button
             color="blue"
             hover="blue"
+            ariaLabel="Help"
             onClick={() => {
               if (isGamePlaying && !isGamePaused) {
                 pauseFrameInterval();

@@ -19,6 +19,7 @@ export default function Snake() {
           <Button
             color="blue"
             hover="blue"
+            ariaLabel="Help"
             onClick={() => {
               setShowModal(true);
             }}

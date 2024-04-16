@@ -19,6 +19,7 @@ export default function GameOfLife() {
           <Button
             color="blue"
             hover="blue"
+            ariaLabel="Help"
             onClick={() => {
               setShowModal(true);
             }}

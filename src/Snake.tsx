@@ -78,6 +78,7 @@ export default function Snake() {
           <Button
             color="blue"
             hover="blue"
+            ariaLabel="Help"
             onClick={() => {
               if (isGamePlaying && !isGamePaused) {
                 pauseFrameInterval();

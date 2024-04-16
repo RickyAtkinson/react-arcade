@@ -7,18 +7,21 @@ export default function Button({
   disabled = false,
   onClick,
   children,
+  ariaLabel,
 }: {
   color?: ButtonColor;
   hover?: ButtonColor;
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children: React.ReactNode;
+  ariaLabel?: string;
 }) {
   return (
     <button
       disabled={disabled}
       className={getButtonClassName(color, hover)}
       onClick={onClick}
+      aria-label={ariaLabel}
     >
       {children}
     </button>
