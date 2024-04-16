@@ -1,4 +1,4 @@
-import IconLogoGithub from "./IconLogogithub";
+import IconLogoGithub from "./IconLogoGithub";
 
 export default function Footer() {
   return (
