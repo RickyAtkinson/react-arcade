@@ -6,6 +6,7 @@ import { checkCollision, checkAppleCollision } from "@/utils/snake/grid";
 import { useInterval } from "usehooks-ts";
 import { getActionForKeyCode } from "@/utils/snake/input";
 import SnakeGameGrid from "./SnakeGameGrid";
+import { playerController } from "@/utils/snake/playerController";
 
 const SnakeGameController = forwardRef(function SnakeGameGridController(
   {
@@ -57,41 +58,15 @@ const SnakeGameController = forwardRef(function SnakeGameGridController(
 ) {
   function handleOnKeyDown({ code }: { code: string }) {
     const action = getActionForKeyCode(code);
+    if (action === null) return;
 
-    // TODO: Don't allow player to change direction back into the snake body.
     if (action === "Quit") {
       quitGame();
     } else if (!isGameOver && !isGameComplete && action === "Pause") {
       isGamePaused ? resumeFrameInterval() : pauseFrameInterval();
       setIsGamePaused((prev) => !prev);
-    } else if (
-      !isGameOver &&
-      !isGamePaused &&
-      !isGameComplete &&
-      action === "MoveLeft"
-    ) {
-      setDirection({ x: -1, y: 0 });
-    } else if (
-      !isGameOver &&
-      !isGamePaused &&
-      !isGameComplete &&
-      action === "MoveRight"
-    ) {
-      setDirection({ x: 1, y: 0 });
-    } else if (
-      !isGameOver &&
-      !isGamePaused &&
-      !isGameComplete &&
-      action === "MoveUp"
-    ) {
-      setDirection({ x: 0, y: -1 });
-    } else if (
-      !isGameOver &&
-      !isGamePaused &&
-      !isGameComplete &&
-      action === "MoveDown"
-    ) {
-      setDirection({ x: 0, y: 1 });
+    } else if (!isGameOver && !isGamePaused && !isGameComplete) {
+      playerController(action, snake, setDirection);
     }
   }
 
