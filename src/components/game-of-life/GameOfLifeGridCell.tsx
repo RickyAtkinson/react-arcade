@@ -5,7 +5,7 @@ export default function GameOfLifeGridCell({ cell }: { cell: GameOfLifeCell }) {
   return (
     <button
       className={clsx("border border-zinc-900", {
-        "bg-gradient-to-br from-neutral-500 to-neutral-600": cell.isAlive,
+        "bg-gradient-to-br from-neutral-400 to-neutral-500": cell.isAlive,
       })}
     ></button>
   );
