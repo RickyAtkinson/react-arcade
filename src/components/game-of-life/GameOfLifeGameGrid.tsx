@@ -1,11 +1,14 @@
 import { GameOfLifeGrid } from "@/game-of-life";
+import { Position } from "@/index";
 import { COLUMNS, RESOLUTION, ROWS } from "@/data/gameOfLife";
 import GameOfLifeGridCell from "./GameOfLifeGridCell";
 
 export default function GameOfLifeGameGrid({
   gameGrid,
+  handleCellClick,
 }: {
   gameGrid: GameOfLifeGrid;
+  handleCellClick: (position: Position) => void;
 }) {
   const boardStyles = {
     "--grid-rows": ROWS,
@@ -20,7 +23,12 @@ export default function GameOfLifeGameGrid({
     >
       {gameGrid.map((row, y) =>
         row.map((cell, x) => (
-          <GameOfLifeGridCell key={`cell-${x}-${y}`} cell={cell} />
+          <GameOfLifeGridCell
+            key={`cell-${x}-${y}`}
+            cell={cell}
+            position={{ x: x, y: y }}
+            handleCellClick={handleCellClick}
+          />
         )),
       )}
     </div>
