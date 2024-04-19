@@ -34,7 +34,7 @@ export default function GameOfLife() {
             Random
           </Button>
           <Button disabled={isGamePlaying} hover="red" onClick={resetGameGrid}>
-            Reset
+            Clear
           </Button>
           <Button
             color="blue"
