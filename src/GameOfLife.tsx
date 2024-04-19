@@ -50,7 +50,11 @@ export default function GameOfLife() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6">
-        <GameOfLifeController gameGrid={gameGrid} setGameGrid={setGameGrid} />
+        <GameOfLifeController
+          isGamePlaying={isGamePlaying}
+          gameGrid={gameGrid}
+          setGameGrid={setGameGrid}
+        />
       </main>
       {showModal && (
         <Modal className="border-1 max-h-[80%] w-4/5 max-w-screen-sm rounded border border-zinc-700 bg-zinc-950 p-6 text-left">
