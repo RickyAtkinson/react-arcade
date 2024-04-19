@@ -1,14 +1,21 @@
-import { Position } from "@/index";
+import { Position, SetStateFunction } from "@/index";
 import { GameOfLifeGrid } from "@/game-of-life";
 import GameOfLifeGameGrid from "./GameOfLifeGameGrid";
 
 export default function GameOfLifeController({
   gameGrid,
-  handleCellClick,
+  setGameGrid,
 }: {
   gameGrid: GameOfLifeGrid;
-  handleCellClick: (position: Position) => void;
+  setGameGrid: SetStateFunction<GameOfLifeGrid>;
 }) {
+  function handleCellClick(position: Position) {
+    const gridCopy = [...gameGrid];
+    gridCopy[position.y][position.x].isAlive =
+      !gridCopy[position.y][position.x].isAlive;
+    setGameGrid(gridCopy);
+  }
+
   return (
     <GameOfLifeGameGrid gameGrid={gameGrid} handleCellClick={handleCellClick} />
   );

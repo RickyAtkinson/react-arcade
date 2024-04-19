@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Position } from ".";
 import useGameGrid from "./hooks/game-of-life/useGameGrid";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
@@ -11,13 +10,6 @@ export default function GameOfLife() {
   const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
   const [gameGrid, setGameGrid, resetGameGrid, randomizeGameGrid] =
     useGameGrid();
-
-  function handleCellClick(position: Position) {
-    const gridCopy = [...gameGrid];
-    gridCopy[position.y][position.x].isAlive =
-      !gridCopy[position.y][position.x].isAlive;
-    setGameGrid(gridCopy);
-  }
 
   return (
     <>
@@ -58,10 +50,7 @@ export default function GameOfLife() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6">
-        <GameOfLifeController
-          gameGrid={gameGrid}
-          handleCellClick={handleCellClick}
-        />
+        <GameOfLifeController gameGrid={gameGrid} setGameGrid={setGameGrid} />
       </main>
       {showModal && (
         <Modal className="border-1 max-h-[80%] w-4/5 max-w-screen-sm rounded border border-zinc-700 bg-zinc-950 p-6 text-left">
