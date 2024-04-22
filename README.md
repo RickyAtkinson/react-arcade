@@ -20,3 +20,7 @@ Install the project dependencies with `pnpm install` then start the development 
 - `pnpm run lint` - Lint project files with eslint
 - `pnpm run test` - Run tests (not implemented)
 - `pnpm run deploy` - Build and deploy to GitHub Pages
+
+## Attribution
+
+- Card images by [Clker-Free-Vector-Images](https://pixabay.com/users/clker-free-vector-images-3736/)
