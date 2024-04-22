@@ -7,7 +7,7 @@ import {
   COLUMNS,
   FRAME_INTERVAL,
   ROWS,
-} from "@/data/gameOfLife";
+} from "@/data/game-of-life";
 import GameOfLifeGameGrid from "./GameOfLifeGameGrid";
 
 export default function GameOfLifeController({

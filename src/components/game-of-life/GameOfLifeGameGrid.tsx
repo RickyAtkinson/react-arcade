@@ -1,6 +1,6 @@
 import { GameOfLifeGrid } from "@/game-of-life";
 import { Position } from "@/index";
-import { COLUMNS, RESOLUTION, ROWS } from "@/data/gameOfLife";
+import { COLUMNS, RESOLUTION, ROWS } from "@/data/game-of-life";
 import GameOfLifeGridCell from "./GameOfLifeGridCell";
 
 export default function GameOfLifeGameGrid({

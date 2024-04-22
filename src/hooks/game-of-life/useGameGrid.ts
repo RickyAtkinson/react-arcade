@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { SetStateFunction } from "@/index";
 import { GameOfLifeGrid } from "@/game-of-life";
-import { COLUMNS, RANDOM_GRID_ALIVE_WEIGHT, ROWS } from "@/data/gameOfLife";
+import { COLUMNS, RANDOM_GRID_ALIVE_WEIGHT, ROWS } from "@/data/game-of-life";
 import { createEmptyGrid, createRandomGrid } from "@/utils/grid";
 
 export default function useGameGrid(): [
