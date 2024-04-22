@@ -1,10 +1,44 @@
 import { useState } from "react";
+import { ConcentrationCard, ConcentrationDeck } from "./concentration";
+import { cardFaceImages } from "./data/concentration";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import Modal from "@/components/Modal";
+import ConcentrationGameController from "./components/concentration/ConcentrationGameController";
 
 export default function Snake() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
+  const [gameDeck, setGameDeck] = useState<ConcentrationDeck>([]);
+
+  function startGame() {
+    const newDeck = [...cardFaceImages, ...cardFaceImages].map(
+      (card, index): ConcentrationCard => ({
+        ...card,
+        id: `card-${index}`,
+        isMatched: false,
+      }),
+    );
+
+    // Shuffle the deck using the Fisher-Yates algorithm
+    for (let i = newDeck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newDeck[i], newDeck[j]] = [newDeck[j], newDeck[i]];
+    }
+
+    setGameDeck(newDeck);
+    setIsGamePlaying(true);
+  }
+
+  function quitGame() {
+    setGameDeck([]);
+    setIsGamePlaying(false);
+  }
+
+  function resetGame() {
+    quitGame();
+    startGame();
+  }
 
   return (
     <>
@@ -13,8 +47,14 @@ export default function Snake() {
           Concentration
         </h1>
         <Navbar>
-          <Button disabled={true} hover="green">
-            Play
+          <Button
+            hover={isGamePlaying ? "red" : "green"}
+            onClick={() => (isGamePlaying ? resetGame() : startGame())}
+          >
+            {isGamePlaying ? "Reset" : "Play"}
+          </Button>
+          <Button disabled={!isGamePlaying} hover="red" onClick={quitGame}>
+            Quit
           </Button>
           <Button
             color="blue"
@@ -29,9 +69,7 @@ export default function Snake() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6">
-        <p className="text-center font-bold leading-7 [&:not(:first-child)]:mt-6">
-          Coming soon...
-        </p>
+        <ConcentrationGameController gameDeck={gameDeck} />
       </main>
       {showModal && (
         <Modal className="border-1 max-h-[80%] w-4/5 max-w-screen-sm rounded border border-zinc-700 bg-zinc-950 p-6 text-left">
