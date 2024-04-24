@@ -9,7 +9,11 @@ import ConcentrationGameController from "./components/concentration/Concentratio
 export default function Snake() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
+  const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
   const [gameDeck, setGameDeck] = useState<ConcentrationDeck>([]);
+  const [, setTurnNumber] = useState<number>(0);
+  const [choiceOne, setChoiceOne] = useState<ConcentrationCard | null>(null);
+  const [choiceTwo, setChoiceTwo] = useState<ConcentrationCard | null>(null);
 
   function startGame() {
     const newDeck = [...cardFaceImages, ...cardFaceImages].map(
@@ -27,12 +31,17 @@ export default function Snake() {
     }
 
     setGameDeck(newDeck);
+    setIsInputDisabled(false);
     setIsGamePlaying(true);
   }
 
   function quitGame() {
-    setGameDeck([]);
     setIsGamePlaying(false);
+    setIsInputDisabled(true);
+    setTurnNumber(0);
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setGameDeck([]);
   }
 
   function resetGame() {
@@ -69,7 +78,17 @@ export default function Snake() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6">
-        <ConcentrationGameController gameDeck={gameDeck} />
+        <ConcentrationGameController
+          gameDeck={gameDeck}
+          setGameDeck={setGameDeck}
+          choiceOne={choiceOne}
+          setChoiceOne={setChoiceOne}
+          choiceTwo={choiceTwo}
+          setChoiceTwo={setChoiceTwo}
+          setTurnNumber={setTurnNumber}
+          isInputDisabled={isInputDisabled}
+          setIsInputDisabled={setIsInputDisabled}
+        />
       </main>
       {showModal && (
         <Modal className="border-1 max-h-[80%] w-4/5 max-w-screen-sm rounded border border-zinc-700 bg-zinc-950 p-6 text-left">

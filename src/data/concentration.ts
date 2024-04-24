@@ -6,3 +6,5 @@ export const cardFaceImages: { src: string }[] = [
   { src: "/img/card-joker.png" },
   { src: "/img/card-blank.png" },
 ];
+
+export const TURN_RESET_DELAY = 1000;
