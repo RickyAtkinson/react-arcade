@@ -65,7 +65,7 @@ export default function ConcentrationGameController({
   ]);
 
   return (
-    <div className="mx-auto grid max-w-lg grid-cols-4 gap-4">
+    <div className="mx-auto mt-6 grid max-w-md grid-cols-4 gap-4">
       {gameDeck.map((card) => (
         <ConcentrationGameCard
           key={card.id}

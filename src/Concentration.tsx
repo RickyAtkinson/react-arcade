@@ -11,7 +11,7 @@ export default function Snake() {
   const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
   const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
   const [gameDeck, setGameDeck] = useState<ConcentrationDeck>([]);
-  const [, setTurnNumber] = useState<number>(0);
+  const [turnNumber, setTurnNumber] = useState<number>(0);
   const [choiceOne, setChoiceOne] = useState<ConcentrationCard | null>(null);
   const [choiceTwo, setChoiceTwo] = useState<ConcentrationCard | null>(null);
 
@@ -77,7 +77,10 @@ export default function Snake() {
           </Button>
         </Navbar>
       </header>
-      <main className="container mx-auto flex-grow px-8 pb-6">
+      <main className="container mx-auto flex-grow px-8 pb-6 text-center">
+        {isGamePlaying && (
+          <span className="text-lg font-bold">Turns: {turnNumber}</span>
+        )}
         <ConcentrationGameController
           gameDeck={gameDeck}
           setGameDeck={setGameDeck}
