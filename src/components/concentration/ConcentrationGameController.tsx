@@ -79,7 +79,6 @@ export default function ConcentrationGameController({
   ]);
 
   useEffect(() => {
-    console.log(gameDeck);
     if (checkIsGameComplete(gameDeck)) setIsGameComplete(true);
   }, [gameDeck, setIsGameComplete]);
 
