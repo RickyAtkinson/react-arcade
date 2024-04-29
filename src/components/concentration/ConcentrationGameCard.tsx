@@ -15,7 +15,7 @@ export default function ConcentrationGameCard({
 }) {
   return (
     <button
-      disabled={disabled}
+      disabled={disabled || isFlipped}
       className="relative drop-shadow-md"
       onClick={() => {
         handleSelection(card);

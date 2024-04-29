@@ -9,6 +9,7 @@ import ConcentrationGameController from "./components/concentration/Concentratio
 export default function Snake() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isGamePlaying, setIsGamePlaying] = useState<boolean>(false);
+  const [isGameComplete, setIsGameComplete] = useState<boolean>(false);
   const [isInputDisabled, setIsInputDisabled] = useState<boolean>(false);
   const [gameDeck, setGameDeck] = useState<ConcentrationDeck>([]);
   const [turnNumber, setTurnNumber] = useState<number>(0);
@@ -37,6 +38,7 @@ export default function Snake() {
 
   function quitGame() {
     setIsGamePlaying(false);
+    setIsGameComplete(false);
     setIsInputDisabled(true);
     setTurnNumber(0);
     setChoiceOne(null);
@@ -78,6 +80,9 @@ export default function Snake() {
         </Navbar>
       </header>
       <main className="container mx-auto flex-grow px-8 pb-6 text-center">
+        {!isGamePlaying && (
+          <span className="text-lg font-bold">Press Play button to begin</span>
+        )}
         {isGamePlaying && (
           <span className="text-lg font-bold">Turns: {turnNumber}</span>
         )}
@@ -88,7 +93,10 @@ export default function Snake() {
           setChoiceOne={setChoiceOne}
           choiceTwo={choiceTwo}
           setChoiceTwo={setChoiceTwo}
+          turnNumber={turnNumber}
           setTurnNumber={setTurnNumber}
+          isGameComplete={isGameComplete}
+          setIsGameComplete={setIsGameComplete}
           isInputDisabled={isInputDisabled}
           setIsInputDisabled={setIsInputDisabled}
         />
