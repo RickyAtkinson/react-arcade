@@ -21,7 +21,7 @@ export default function App() {
           project and are by no means polished products.
         </p>
         <p className="mx-auto max-w-lg font-bold leading-7 [&:not(:first-child)]:mt-6">
-          🚧 WORK IN PROGRESS 🚧
+          🚧 MOBILE SUPPORT COMING SOON 🚧
         </p>
         <p className="mx-auto max-w-lg leading-7 [&:not(:first-child)]:mt-6">
           Select a game below:
