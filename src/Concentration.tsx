@@ -106,7 +106,17 @@ export default function Snake() {
               Close
             </button>
           </header>
-          <p className="leading-7 [&:not(:first-child)]:mt-6">Coming soon.</p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Concentration, the classic card memory game.
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Each turn you choose 2 cards to turn over. If you find a matching
+            pair they will stay face up, otherwise they will flip back over.
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Reveal all of the cards to win. Try to complete the game in as few
+            turns as posible.
+          </p>
         </Modal>
       )}
     </>
