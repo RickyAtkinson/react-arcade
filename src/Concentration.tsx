@@ -60,12 +60,12 @@ export default function Snake() {
         <Navbar>
           <Button
             hover={isGamePlaying ? "red" : "green"}
-            onClick={() => (isGamePlaying ? resetGame() : startGame())}
+            onClick={() => (isGamePlaying ? quitGame() : startGame())}
           >
-            {isGamePlaying ? "Reset" : "Play"}
+            {isGamePlaying ? "Quit" : "Play"}
           </Button>
-          <Button disabled={!isGamePlaying} hover="red" onClick={quitGame}>
-            Quit
+          <Button disabled={!isGamePlaying} hover="red" onClick={resetGame}>
+            Reset
           </Button>
           <Button
             color="blue"
