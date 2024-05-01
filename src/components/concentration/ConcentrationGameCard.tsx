@@ -30,7 +30,11 @@ export default function ConcentrationGameCard({
             },
           ),
         )}
-        src={card.src}
+        src={
+          process.env.NODE_ENV === "production"
+            ? "/react-arcade/" + card.src
+            : card.src
+        }
         alt="Card front"
       />
       <img
@@ -39,7 +43,11 @@ export default function ConcentrationGameCard({
             "delay-0 [transform:rotateY(90deg)]": isFlipped,
           }),
         )}
-        src="/img/card-back-red.png"
+        src={
+          process.env.NODE_ENV === "production"
+            ? "/react-arcade/img/card-back-red.png"
+            : "/img/card-back-red.png"
+        }
         alt="Card back"
       />
     </button>
