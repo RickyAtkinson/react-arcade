@@ -29,7 +29,11 @@ export default function App() {
         <div className="mx-auto mt-8 grid grid-cols-1 gap-3 text-xl md:grid-cols-2">
           {gameList.map((game) => (
             <Link
-              to={game.href}
+              to={
+                process.env.NODE_ENV === "production"
+                  ? "/react-arcade" + game.href
+                  : game.href
+              }
               className="rounded bg-zinc-900 p-6 font-bold tracking-tight transition-colors hover:bg-blue-700 md:py-16"
               key={game.name.toLowerCase().replaceAll(" ", "-")}
             >

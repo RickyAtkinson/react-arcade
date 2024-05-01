@@ -15,10 +15,38 @@ createRoot(document.getElementById("root")!).render(
           path={process.env.NODE_ENV === "production" ? "/react-arcade" : "/"}
           element={<App />}
         />
-        <Route path="/concentration" element={<Concentration />} />
-        <Route path="/game-of-life" element={<GameOfLife />} />
-        <Route path="/snake" element={<Snake />} />
-        <Route path="/tetris" element={<Tetris />} />
+        <Route
+          path={
+            process.env.NODE_ENV === "production"
+              ? "/react-arcade/concentration"
+              : "/concentration"
+          }
+          element={<Concentration />}
+        />
+        <Route
+          path={
+            process.env.NODE_ENV === "production"
+              ? "/react-arcade/game-of-life"
+              : "/game-of-life"
+          }
+          element={<GameOfLife />}
+        />
+        <Route
+          path={
+            process.env.NODE_ENV === "production"
+              ? "/react-arcade/snake"
+              : "/snake"
+          }
+          element={<Snake />}
+        />
+        <Route
+          path={
+            process.env.NODE_ENV === "production"
+              ? "/react-arcade/tetris"
+              : "/tetris"
+          }
+          element={<Tetris />}
+        />
       </Routes>
     </BrowserRouter>
     <Footer />
