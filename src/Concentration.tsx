@@ -46,10 +46,10 @@ export default function Snake() {
     setGameDeck([]);
   }
 
-  function resetGame() {
-    quitGame();
-    startGame();
-  }
+  // function resetGame() {
+  //   quitGame();
+  //   startGame();
+  // }
 
   return (
     <>
@@ -64,9 +64,9 @@ export default function Snake() {
           >
             {isGamePlaying ? "Quit" : "Play"}
           </Button>
-          <Button disabled={!isGamePlaying} hover="red" onClick={resetGame}>
-            Reset
-          </Button>
+          {/* <Button disabled={!isGamePlaying} hover="red" onClick={resetGame}> */}
+          {/*   Reset */}
+          {/* </Button> */}
           <Button
             color="blue"
             hover="blue"
