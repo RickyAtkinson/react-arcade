@@ -6,7 +6,7 @@ import { name } from "./package.json";
 // https://vitejs.dev/config/
 export default defineConfig({
   ...(process.env.NODE_ENV === "production"
-    ? { base: `/${name}/` }
+    ? { base: `/${name}` }
     : { build: { sourcemap: true } }),
   plugins: [react()],
   resolve: {
